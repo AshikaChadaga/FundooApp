@@ -5,56 +5,53 @@
     border-radius: 8px;
     max-width: 37vw;
     text-align: left;
-    // margin-left: 30vw;
-    // margin-top: 17vh;
     margin-left: 30%;
     margin-top: 8%;
     padding: 5vh 5vh;
-}
 
-.signup-title{
-    font-size: 2.5vh;
-    font-weight: lighter;
-}
+    .signup-title{
+        font-size: 2.5vh;
+        font-weight: lighter;
+    }
 
+    .form{
+        .first-button{
+            text-transform: lowercase;
+        }
 
-.image-div{
-    padding-left: 5vh;
-    text-align: center;
-}
+        .password-description{
+            margin: 0;
+            margin-left: 1vh;
+            font-size: 1.4vh;
+            max-width: 18vw;
+            color: rgba(0, 0, 0, 0.6);
+        }
+        
+        .show-password{
+            font-size: 1.7vh;
+            font-weight: lighter;
+            margin-bottom: 7vh;
+        }
+        
+        .sign-in{
+            padding-bottom: 3vh;
+            padding-top: 3vh;
+        }
+    }
 
+    .image-div{
+        padding-left: 5vh;
+        text-align: center;
 
-.first-button{
-    text-transform: lowercase;
-}
-
-.password-description{
-    margin: 0;
-    margin-left: 1vh;
-    font-size: 1.4vh;
-    // font-weight: bold;
-    max-width: 18vw;
-    color: rgba(0, 0, 0, 0.6);
-}
-
-.show-password{
-    font-size: 1.7vh;
-    font-weight: lighter;
-    margin-bottom: 7vh;
-}
-
-.sign-in{
-    padding-bottom: 3vh;
-    padding-top: 3vh;
-}
-
-.acount-image{
-    padding-top: 10vh;
-    max-width: 50vh;
-}
-
-.mail-description{
-    font-weight: lighter;
+        .acount-image{
+            padding-top: 10vh;
+            max-width: 50vh;
+        }
+        
+        .mail-description{
+            font-weight: lighter;
+        }
+    }
 }
 
 @media only screen and (max-width:900px) {

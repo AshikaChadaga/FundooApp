@@ -4,8 +4,6 @@ import './SignUp.scss'
 import Box from '@mui/material/Box'
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField'
-// import FormGroup from '@mui/material/FormGroup';
-// import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import account from "../../assets/signup/account.svg"
 import InputAdornment from '@mui/material/InputAdornment';
@@ -45,7 +43,7 @@ export class SignUp extends Component {
 
               <Box sx={{ "& button": { maxWidth: "61%" } }}>
                 <div className="first-button">
-                  <Button style={{textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh'}} fullWidth size="small">Use my current email address instead</Button>
+                  <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} fullWidth size="small">Use my current email address instead</Button>
                 </div>
               </Box>
               <br />
@@ -68,9 +66,9 @@ export class SignUp extends Component {
 
               <br />
               <div className="sign-in">
-                <Box sx={{ "& button": { marginLeft: 1, marginRight: 13} }}>
+                <Box sx={{ "& button": { marginLeft: 1, marginRight: 13 } }}>
                   <div>
-                    <Button style={{textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh'}} size="small">Sign in instead</Button>
+                    <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} size="small">Sign in instead</Button>
                     <Button variant="contained" size="medium">Next</Button>
                   </div>
                 </Box>
@@ -81,7 +79,7 @@ export class SignUp extends Component {
           </div>
 
           <div class="image-div">
-            <img class="acount-image" src={account} alt="Account"/>
+            <img class="acount-image" src={account} alt="Account" />
             <p class="mail-description">One account. All of FunDoo working for you.</p>
           </div>
         </div>
