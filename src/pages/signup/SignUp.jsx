@@ -6,7 +6,6 @@ import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField'
 import Checkbox from '@mui/material/Checkbox';
 import account from "../../assets/signup/account.svg"
-import InputAdornment from '@mui/material/InputAdornment';
 
 export class SignUp extends Component {
   render() {
