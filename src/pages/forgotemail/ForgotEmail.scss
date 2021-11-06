@@ -1,0 +1,14 @@
+@import "../signup/SignUp.scss";
+
+.sign-in-page {
+
+    .form {
+        margin-bottom: 50%;
+        .sign-in {
+            display: grid;
+            grid-template-columns: 1fr;
+            padding-top: 2vh;
+            margin-left: 80%;
+        }
+    }
+}
