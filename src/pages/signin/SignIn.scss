@@ -1,0 +1,119 @@
+@import "../signup/SignUp.scss";
+
+@mixin font($weight, $size) {
+    font-weight: $weight;
+    font-size: $size;
+}
+
+.sign-in-page {
+    @include form-border;
+    max-width: 30%;
+    margin: 11% 38%;
+
+    .title {
+        padding-top: 30px;
+    }
+
+    .signin-title {
+        @include font(400, 24px);
+    }
+
+    .signin-sub {
+        @include font(400, 17px);
+    }
+
+    .form {
+        text-align: left;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 20%;
+
+        .learn-section {
+            .helper {
+                @include font(400, 14px);
+                color: gray;
+                padding-top: 3vh;
+                margin-bottom: 0%;
+                min-width: 100%;
+            }
+        }
+
+        .sign-in {
+            padding-top: 4vh;
+            @include two-column-grid(37%);
+        }
+    }
+}
+
+@media only screen and (max-width: 1900px) {
+    .sign-in-page {
+        margin: 11% 30%;
+        min-width: 30%;
+    }
+}
+
+@media only screen and (max-width: 1550px) {
+    .sign-in-page {
+        margin: 11% 30%;
+        min-width: 30%;
+
+        .form {
+            .sign-in {
+                @include two-column-grid(25%);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .sign-in-page {
+        margin: 11% 25%;
+        min-width: 38%;
+
+        .form {
+            .sign-in {
+                @include two-column-grid(25%);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1020px) {
+    .sign-in-page {
+        margin: 11% 23%;
+        min-width: 50%;
+
+        .form {
+            .sign-in {
+                @include two-column-grid(23%);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .sign-in-page {
+        margin: 11% 20%;
+        min-width: 60%;
+
+        .form {
+            .sign-in {
+                @include two-column-grid(20%);
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .sign-in-page {
+        margin: 0px 0px;
+        min-width: 100%;
+        border: none;
+
+        .form {
+            .sign-in {
+                @include two-column-grid(20vw);
+            }
+        }
+    }
+}
