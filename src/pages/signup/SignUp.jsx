@@ -19,67 +19,40 @@ export class SignUp extends Component {
             <h1 className="signup-title">Create your FunDoo Account</h1>
             <div className="form">
 
-              <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { marginRight: 2, width: '8.5vw' },
-                }}
-                noValidate
-                autoComplete="off"
-              >
+              <div className="name-input">
                 <TextField margin="normal" size="small" id="first-name" label="First name" variant="outlined" />
-                <TextField margin="normal" size="small" id="last-name" label="Last name" variant="outlined" /><br />
-              </Box>
+                <TextField margin="normal" size="small" id="last-name" label="Last name" variant="outlined" />
+              </div>
 
-              <Box
-                sx={{
-                  width: "18vw",
-                  maxWidth: '100%'
-                }}
-              >
-                <TextField defaultValue="@gmail.com" fullWidth helperText="You can use letters, numbers & periods" margin="normal" size="small" label="Username" id="username" />
-              </Box>
+              <TextField fullWidth helperText="You can use letters, numbers & periods" margin="normal" size="small" label="Username" id="username" />
 
-              <Box sx={{ "& button": { maxWidth: "61%" } }}>
-                <div className="first-button">
-                  <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} fullWidth size="small">Use my current email address instead</Button>
-                </div>
-              </Box>
-              <br />
-              <Box
-                component="form"
-                sx={{
-                  '& > :not(style)': { marginRight: 2, width: '8.5vw' },
-                }}
-                noValidate
-                autoComplete="off"
+              <div className="first-button">
+                <Button className="use-email" style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} fullWidth size="small">Use my current email address instead</Button>
+              </div>
 
-              >
+              <div className="name-input">
                 <TextField margin="normal" size="small" id="password" label="Password" variant="outlined" />
-                <TextField margin="normal" size="small" id="confirm" label="Confirm" variant="outlined" /><br />
-              </Box>
+                <TextField margin="normal" size="small" id="confirm" label="Confirm" variant="outlined" />
+              </div>
               <p className="password-description">Use 8 or more characters with a mix of letters, numbers & symbols</p>
 
-              <Checkbox required />
-              <span className="show-password">Show Password</span>
+              <div className="check-box">
+                <Checkbox required />
+                <span className="show-password">Show Password</span>
+              </div>
 
-              <br />
               <div className="sign-in">
-                <Box sx={{ "& button": { marginLeft: 1, marginRight: 13 } }}>
-                  <div>
                     <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} size="small">Sign in instead</Button>
                     <Button variant="contained" size="medium">Next</Button>
-                  </div>
-                </Box>
               </div>
 
             </div>
 
           </div>
 
-          <div class="image-div">
-            <img class="acount-image" src={account} alt="Account" />
-            <p class="mail-description">One account. All of FunDoo working for you.</p>
+          <div className="image-div">
+            <img className="acount-image" src={account} alt="Account" />
+            <p className="mail-description">One account. All of FunDoo working for you.</p>
           </div>
         </div>
       </div>
