@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Title from '../../components/title/Title'
-import Button from "@mui/material/Button";
+import Button from "@mui/material/Button"
 import TextField from '@mui/material/TextField'
 import './SignIn.scss'
 
