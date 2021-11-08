@@ -1,12 +1,7 @@
 import AxiosService from "./AxiosService"
 
 const axiosService = new AxiosService();
-let baseURL = "http://fundoonotes.incubation.bridgelabz.com/api/"
-let tokenHeader = {
-    headers: {
-        'Authorization': 'jW7wmbiJJrxGxVjDzAnddSlYk3KLEzNXHbIHxHW2U5HjXGGPzV8e8OT4LYVsokPN'
-    }
-};
+let baseURL = "http://fundoonotes.incubation.bridgelabz.com/api/";
 
 class UserService{
     registration(url, data){
@@ -18,8 +13,8 @@ class UserService{
     reset(url, data){
         return axiosService.postMethod(`${baseURL}${url}`, data);
     }
-    resetPassword(url, data){
-        return axiosService.postMethod(`${baseURL}${url}`, data, tokenHeader);
+    resetPassword(url, data, config){
+        return axiosService.postMethod(`${baseURL}${url}`, data, config);
     }
 }
 
