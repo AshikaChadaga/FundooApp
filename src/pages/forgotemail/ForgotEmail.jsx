@@ -20,7 +20,7 @@ export class ForgotEmail extends Component {
               <TextField fullWidth margin="normal" size="medium" label="Phone number or email" variant="outlined" />
             </div>
 
-            <div className="sign-in">
+            <div className="forgot-email">
               <Button style={{ paddingLeft: '1px', paddingRight: '1px' }} variant="contained" size="medium">Next</Button>
             </div>
 

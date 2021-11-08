@@ -19,19 +19,19 @@ export class SignUp extends Component {
             <div className="form">
 
               <div className="name-input">
-                <TextField margin="normal" size="small" id="first-name" label="First name" variant="outlined" />
-                <TextField margin="normal" size="small" id="last-name" label="Last name" variant="outlined" />
+                <TextField name="firstName" margin="normal" size="small" id="first-name" label="First name" variant="outlined" />
+                <TextField name="lastName" margin="normal" size="small" id="last-name" label="Last name" variant="outlined" />
               </div>
 
-              <TextField fullWidth helperText="You can use letters, numbers & periods" margin="normal" size="small" label="Username" id="username" />
+              <TextField name="username" fullWidth helperText="You can use letters, numbers & periods" margin="normal" size="small" label="Username" id="username" />
 
               <div className="first-button">
                 <Button className="use-email" style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} fullWidth size="small">Use my current email address instead</Button>
               </div>
 
               <div className="name-input">
-                <TextField margin="normal" size="small" id="password" label="Password" variant="outlined" />
-                <TextField margin="normal" size="small" id="confirm" label="Confirm" variant="outlined" />
+                <TextField name="password" margin="normal" size="small" id="password" label="Password" variant="outlined" />
+                <TextField name="confirm" margin="normal" size="small" id="confirm" label="Confirm" variant="outlined" />
               </div>
               <p className="password-description">Use 8 or more characters with a mix of letters, numbers & symbols</p>
 
@@ -41,12 +41,10 @@ export class SignUp extends Component {
               </div>
 
               <div className="sign-in">
-                    <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} size="small">Sign in instead</Button>
-                    <Button variant="contained" size="medium">Next</Button>
+                <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh' }} size="small">Sign in instead</Button>
+                <Button variant="contained" size="medium">Next</Button>
               </div>
-
             </div>
-
           </div>
 
           <div className="image-div">

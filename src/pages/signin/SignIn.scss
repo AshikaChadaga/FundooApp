@@ -8,7 +8,7 @@
 .sign-in-page {
     @include form-border;
     max-width: 30%;
-    margin: 11% 38%;
+    margin: 8% 38%;
 
     .title {
         padding-top: 30px;
@@ -38,7 +38,7 @@
             }
         }
 
-        .sign-in {
+        .create-account {
             padding-top: 4vh;
             @include two-column-grid(37%);
         }
@@ -58,7 +58,7 @@
         min-width: 30%;
 
         .form {
-            .sign-in {
+            .create-account {
                 @include two-column-grid(25%);
             }
         }
@@ -71,7 +71,7 @@
         min-width: 38%;
 
         .form {
-            .sign-in {
+            .create-account {
                 @include two-column-grid(25%);
             }
         }
@@ -84,7 +84,7 @@
         min-width: 50%;
 
         .form {
-            .sign-in {
+            .create-account {
                 @include two-column-grid(23%);
             }
         }
@@ -97,7 +97,7 @@
         min-width: 60%;
 
         .form {
-            .sign-in {
+            .create-account {
                 @include two-column-grid(20%);
             }
         }
@@ -111,7 +111,7 @@
         border: none;
 
         .form {
-            .sign-in {
+            .create-account {
                 @include two-column-grid(20vw);
             }
         }

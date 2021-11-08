@@ -26,7 +26,7 @@ export class SignIn extends Component {
                             <Button style={{ textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh', backgroundColor: "#fff", paddingLeft:'0%'}} size="small">Learn more</Button>
                         </div>
 
-                        <div className="sign-in">
+                        <div className="create-account">
                             <Button style={{textTransform: 'none', fontWeight: 'bolder', fontSize: '1.5vh'}} size="small">Create account</Button>
                             <Button style={{paddingLeft:'1px', paddingRight:'1px'}} variant="contained" size="medium">Next</Button>
                         </div>

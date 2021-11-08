@@ -21,8 +21,8 @@ export class ResetPassword extends Component {
                             <TextField fullWidth margin="normal" size="small" id="confirm-password" label="Confirm new password" variant="outlined" />
                         </div>
 
-                        <div className="sign-in">
-                            <Button style={{ paddingLeft: '1px', paddingRight: '1px', textTransform:'none'}} variant="contained" size="medium">Reset Password</Button>
+                        <div className="reset-password">
+                            <Button fullWidth style={{ paddingLeft: '1px', paddingRight: '1px', textTransform:'none'}} variant="contained" size="medium">Reset Password</Button>
                         </div>
                     </div>
                 </div>
