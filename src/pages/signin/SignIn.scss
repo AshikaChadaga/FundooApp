@@ -8,7 +8,7 @@
 .sign-in-page {
     @include form-border;
     max-width: 30%;
-    margin: 8% 38%;
+    margin: 4% 38%;
 
     .title {
         padding-top: 30px;
@@ -22,11 +22,11 @@
         @include font(400, 17px);
     }
 
-    .form {
+    .sign-in-form {
         text-align: left;
         margin-left: 10%;
         margin-right: 10%;
-        margin-bottom: 20%;
+        margin-bottom: 5%;
 
         .learn-section {
             .helper {
