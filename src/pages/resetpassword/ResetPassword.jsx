@@ -3,8 +3,62 @@ import Title from '../../components/title/Title'
 import Button from "@mui/material/Button"
 import TextField from '@mui/material/TextField'
 import './ResetPassword.scss'
+import UserService from '../../service/UserService';
+
+const userService = new UserService();
 
 export class ResetPassword extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            newPassword: "",
+            confirmPassword: "",
+            newPasswordError: false,
+            confirmPasswordError: false
+        };
+    }
+
+    isValidated = () => {
+        let isError = false;
+        const errors = this.state;
+
+        errors.newPasswordError = this.state.newPassword !== "" ? false : true;
+        errors.confirmPasswordError = this.state.confirmPassword !== "" ? false : true;
+
+        this.setState({
+            ...errors
+        });
+
+        return (isError = errors.newPasswordError || errors.confirmPasswordError);
+    };
+
+    validate = () => {
+        var isValid = this.isValidated();
+        console.log(this.state);
+        if (!isValid) {
+            console.log("Validation Successfull!!");
+            let data = {
+                "password": this.state.newPassword
+            };
+            
+            userService.resetPassword("/user/reset-password", data)
+                .then(() => {
+                    console.log("Password Changed!")
+                })
+                .catch(error => {
+                    console.error('Error encountered!', error);
+                });
+        }
+    };
+
+    changeHandler = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value,
+        });
+    };
+
     render() {
         return (
             <div>
@@ -17,12 +71,46 @@ export class ResetPassword extends Component {
                     <div className="form">
 
                         <div className="name-input">
-                            <TextField fullWidth margin="normal" size="small" id="new-password" label="New password" variant="outlined" />
-                            <TextField fullWidth margin="normal" size="small" id="confirm-password" label="Confirm new password" variant="outlined" />
+                            <TextField
+                                type="password"
+                                fullWidth
+                                margin="normal"
+                                size="small"
+                                id="new-password"
+                                label="New password"
+                                variant="outlined"
+                                name="newPassword"
+                                error={this.state.newPasswordError}
+                                helperText={this.state.newPasswordError ? "Enter new Password" : ""}
+                                onChange={(e) => this.changeHandler(e)}
+                            />
+                            <TextField
+                                fullWidth
+                                type="password"
+                                margin="normal"
+                                size="small"
+                                id="confirm-password"
+                                label="Confirm new password"
+                                variant="outlined"
+                                name="confirmPassword"
+                                error={this.state.confirmPasswordError}
+                                helperText={this.state.confirmPasswordError ? "Confirm Password" : ""}
+                                onChange={(e) => this.changeHandler(e)}
+                            />
                         </div>
 
                         <div className="reset-password">
-                            <Button fullWidth style={{ paddingLeft: '1px', paddingRight: '1px', textTransform:'none'}} variant="contained" size="medium">Reset Password</Button>
+                            <Button
+                                fullWidth
+                                style={{
+                                    paddingLeft: '1px',
+                                    paddingRight: '1px',
+                                    textTransform: 'none'
+                                }}
+                                variant="contained"
+                                size="medium"
+                                onClick={this.validate}
+                            >Reset Password</Button>
                         </div>
                     </div>
                 </div>
