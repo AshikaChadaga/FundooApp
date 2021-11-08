@@ -85,6 +85,7 @@ export class SignIn extends Component {
                             />
                             <TextField
                                 fullWidth
+                                type="password"
                                 margin="normal"
                                 size="medium"
                                 id="password"

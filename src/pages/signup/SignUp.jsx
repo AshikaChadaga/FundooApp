@@ -132,6 +132,7 @@ export class SignUp extends Component {
 
               <div className="name-input">
                 <TextField
+                  type="password"
                   name="password"
                   margin="normal"
                   size="small"
@@ -144,6 +145,7 @@ export class SignUp extends Component {
                 />
 
                 <TextField
+                  type="password"
                   name="confirm"
                   margin="normal"
                   size="small"
