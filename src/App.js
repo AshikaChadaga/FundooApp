@@ -11,7 +11,7 @@ function App() {
       {/* <SignUp/> */}
       {/* <SignIn/> */}
       {/* <ForgotEmail/> */}
-      <ResetPassword/>
+      {/* <ResetPassword/> */}
       {/* <Dashboard/> */}
     </div>
   );
