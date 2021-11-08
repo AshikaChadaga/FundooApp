@@ -40,12 +40,16 @@ export class ResetPassword extends Component {
         if (!isValid) {
             console.log("Validation Successfull!!");
             let data = {
-                "password": this.state.newPassword
+                "newPassword": this.state.newPassword
             };
-            
-            userService.resetPassword("/user/reset-password", data)
+            let config = {
+                headers: {
+                    'Authorization': 'lTx3xyB8p6qFdcnU3kf2sKo4KTe8chlxEmdCzoW1IaCqAo8WIEgZKicCRl8rWrbB',
+                }
+            };
+            userService.resetPassword("/user/reset-password", data, config)
                 .then(() => {
-                    console.log("Password Changed!")
+                    console.log("Password Changed!");
                 })
                 .catch(error => {
                     console.error('Error encountered!', error);
