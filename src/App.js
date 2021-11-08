@@ -8,10 +8,10 @@ import Dashboard from './pages/dashboard/Dashboard';
 function App() {
   return (
     <div className="App">
-      <SignUp/>
+      {/* <SignUp/> */}
       {/* <SignIn/> */}
       {/* <ForgotEmail/> */}
-      {/* <ResetPassword/> */}
+      <ResetPassword/>
       {/* <Dashboard/> */}
     </div>
   );
