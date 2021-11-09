@@ -24,6 +24,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputBase from "@mui/material/InputBase";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
+import Notes from '../../components/notes/Notes'
 
 const drawerWidth = 240;
 const state = false;
@@ -226,6 +227,10 @@ export function Header() {
                         )}
                     </List>
                 </Drawer>
+                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+                    <DrawerHeader />
+                    <Notes/>
+                </Box>
             </Box>
         </div>
     )
