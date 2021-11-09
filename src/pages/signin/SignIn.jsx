@@ -4,6 +4,7 @@ import Button from "@mui/material/Button"
 import TextField from '@mui/material/TextField'
 import './SignIn.scss'
 import UserService from '../../service/UserService';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 const userService = new UserService();
 
@@ -14,7 +15,7 @@ export class SignIn extends Component {
 
         this.state = {
             emailOrPhone: "",
-            password:"",
+            password: "",
             emailOrPhoneError: false,
             passwordError: false
         };
@@ -96,16 +97,19 @@ export class SignIn extends Component {
                                 helperText={this.state.emailOrPhoneError ? "Enter your password" : ""}
                                 onChange={(e) => this.changeHandler(e)}
                             />
-                            <Button
-                                style={{
-                                    textTransform: 'none',
-                                    fontWeight: 'bolder',
-                                    fontSize: '1.5vh',
-                                    backgroundColor: "#fff",
-                                    paddingLeft: '0%'
-                                }}
-                                size="small"
-                            >Forgot email?</Button>
+                            <Router>
+                                    <Button
+                                        style={{
+                                            textTransform: 'none',
+                                            fontWeight: 'bolder',
+                                            fontSize: '1.5vh',
+                                            backgroundColor: "#fff",
+                                            paddingLeft: '0%'
+                                        }}
+                                        size="small"
+                                        onClick={()=>{this.props.history.push("/forgotemail")}}
+                                    >Forgot email?</Button>
+                            </Router>
                         </div>
 
                         <div className="learn-section">
@@ -123,14 +127,17 @@ export class SignIn extends Component {
                         </div>
 
                         <div className="create-account">
-                            <Button
-                                style={{
-                                    textTransform: 'none',
-                                    fontWeight: 'bolder',
-                                    fontSize: '1.5vh'
-                                }}
-                                size="small"
-                            >Create account</Button>
+                            <Router>
+                                    <Button
+                                        style={{
+                                            textTransform: 'none',
+                                            fontWeight: 'bolder',
+                                            fontSize: '1.5vh'
+                                        }}
+                                        size="small"
+                                        onClick={()=>{this.props.history.push("/")}}
+                                    >Create account</Button>
+                            </Router>
                             <Button
                                 style={{
                                     paddingLeft: '1px',
