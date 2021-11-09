@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField'
 import Checkbox from '@mui/material/Checkbox';
 import account from "../../assets/signup/account.svg"
 import UserService from '../../service/UserService';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 const userService = new UserService();
 
@@ -161,13 +162,17 @@ export class SignUp extends Component {
               </div>
 
               <div className="sign-in">
-                <Button
-                  style={{
-                    textTransform: 'none',
-                    fontWeight: 'bolder',
-                    fontSize: '1.5vh'
-                  }}
-                  size="small">Sign in instead</Button>
+                <Router>
+                    <Button
+                      style={{
+                        textTransform: 'none',
+                        fontWeight: 'bolder',
+                        fontSize: '1.5vh'
+                        
+                      }}
+                      onClick={()=>{this.props.history.push("/signin")}}
+                      size="small">Sign in instead</Button>
+                </Router>
                 <Button
                   variant="contained"
                   size="medium"
