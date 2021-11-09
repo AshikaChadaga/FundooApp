@@ -1,0 +1,22 @@
+@mixin form-border {
+    border: 1px solid lightgray;
+    border-radius: 8px;
+}
+
+.notes{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1%;
+    text-align: left;
+
+    .note{
+        @include form-border();
+        padding: 5%;
+        max-width: 300px;
+        min-height: 2%;
+        .title{
+            margin-top: 2%;
+            margin-right: 62%;
+        }
+    }
+}
