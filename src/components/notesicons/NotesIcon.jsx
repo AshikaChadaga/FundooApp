@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import IconButton from "@mui/material/IconButton";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
+import PalleteIcon from '../palleteicon/PalleteIcon';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 
 export default function NotesIcon() {
     return (
@@ -20,6 +21,7 @@ export default function NotesIcon() {
                 <IconButton size="small">
                     <ColorLensOutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
+                {/* <span><PalleteIcon/></span> */}
                 <IconButton size="small">
                     <ImageOutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
