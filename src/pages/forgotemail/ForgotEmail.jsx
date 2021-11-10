@@ -30,7 +30,10 @@ export class ForgotEmail extends Component {
     return (isError = errors.emailOrPhoneError);
   };
 
+  
+
   validate = () => {
+    let url = "/resetpassword/";
     var isValid = this.isValidated();
     console.log(this.state);
     if (!isValid) {
@@ -41,6 +44,7 @@ export class ForgotEmail extends Component {
       userService.reset("/user/reset", data)
         .then(() => {
           console.log("Email found!")
+          this.props.history.push(`${url}${localStorage.getItem("id")}`);
         })
         .catch(error => {
           console.error('Error encountered!', error);
