@@ -16,6 +16,13 @@ class UserService{
     resetPassword(url, data, config){
         return axiosService.postMethod(`${baseURL}${url}`, data, config);
     }
+    addNotes(url, data, config){
+        return axiosService.postMethod(`${baseURL}${url}`, data, config);
+    }
+
+    displayNotes(url, config){
+        return axiosService.getMethod(`${baseURL}${url}`, config);
+    }
 }
 
 export default UserService
