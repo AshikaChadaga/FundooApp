@@ -4,8 +4,9 @@ class AxiosService{
     postMethod(url, data, config){
         return axios.post(url, data, config);
     }
-    // getMethod(){
-    // }
+    getMethod(url, config){
+        return axios.get(url, config);
+    }
     // deleteMethod(){
     // }
 }
