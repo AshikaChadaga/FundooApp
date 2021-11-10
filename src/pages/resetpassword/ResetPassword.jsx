@@ -37,14 +37,18 @@ export class ResetPassword extends Component {
     validate = () => {
         var isValid = this.isValidated();
         console.log(this.state);
+        const url = window.location.href;
+
         if (!isValid) {
             console.log("Validation Successfull!!");
+            const urlArray = url.split("/");
+            
             let data = {
                 "newPassword": this.state.newPassword
             };
             let config = {
                 headers: {
-                    'Authorization': 'lTx3xyB8p6qFdcnU3kf2sKo4KTe8chlxEmdCzoW1IaCqAo8WIEgZKicCRl8rWrbB',
+                    'Authorization': urlArray[urlArray.length-1]
                 }
             };
             userService.resetPassword("/user/reset-password", data, config)
