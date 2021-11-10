@@ -57,7 +57,8 @@ export class SignUp extends Component {
       };
       userService.registration("/user/userSignUp", data)
         .then(() => {
-          console.log("User Resigtered!")
+          console.log("User Resigtered!");
+          this.props.history.push("/signin");
         })
         .catch(error => {
           console.error('Error encountered!', error);
