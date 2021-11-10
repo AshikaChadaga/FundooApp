@@ -5,6 +5,8 @@ import TextField from '@mui/material/TextField'
 import './SignIn.scss'
 import UserService from '../../service/UserService';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import Auth from '../../components/Authentication/Authentication'
+// import { ToastContainer, toast } from "react-toastify";
 
 const userService = new UserService();
 
@@ -45,8 +47,13 @@ export class SignIn extends Component {
                 "password": this.state.password
             };
             userService.login("/user/login", data)
-                .then(() => {
+                .then((res) => {
                     console.log("User Logged in!")
+                    localStorage.setItem("id", res.data.id)
+                    
+                    Auth.login(() => {
+                        this.props.history.push("/dashboard");
+                    })
                 })
                 .catch(error => {
                     console.error('Error encountered!', error);
@@ -98,17 +105,17 @@ export class SignIn extends Component {
                                 onChange={(e) => this.changeHandler(e)}
                             />
                             <Router>
-                                    <Button
-                                        style={{
-                                            textTransform: 'none',
-                                            fontWeight: 'bolder',
-                                            fontSize: '1.5vh',
-                                            backgroundColor: "#fff",
-                                            paddingLeft: '0%'
-                                        }}
-                                        size="small"
-                                        onClick={()=>{this.props.history.push("/forgotemail")}}
-                                    >Forgot email?</Button>
+                                <Button
+                                    style={{
+                                        textTransform: 'none',
+                                        fontWeight: 'bolder',
+                                        fontSize: '1.5vh',
+                                        backgroundColor: "#fff",
+                                        paddingLeft: '0%'
+                                    }}
+                                    size="small"
+                                    onClick={() => { this.props.history.push("/forgotemail") }}
+                                >Forgot email?</Button>
                             </Router>
                         </div>
 
@@ -128,15 +135,15 @@ export class SignIn extends Component {
 
                         <div className="create-account">
                             <Router>
-                                    <Button
-                                        style={{
-                                            textTransform: 'none',
-                                            fontWeight: 'bolder',
-                                            fontSize: '1.5vh'
-                                        }}
-                                        size="small"
-                                        onClick={()=>{this.props.history.push("/")}}
-                                    >Create account</Button>
+                                <Button
+                                    style={{
+                                        textTransform: 'none',
+                                        fontWeight: 'bolder',
+                                        fontSize: '1.5vh'
+                                    }}
+                                    size="small"
+                                    onClick={() => { this.props.history.push("/") }}
+                                >Create account</Button>
                             </Router>
                             <Button
                                 style={{
