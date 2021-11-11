@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Popper from "@mui/material/Popper";
 import Typography from "@mui/material/Typography";
 import Fade from "@mui/material/Fade";
@@ -19,8 +18,8 @@ export default function PalleteIcon() {
     };
 
     return (
-        <Box>
-            <Popper open={open} anchorEl={anchorEl} placement={placement} transition>
+        <span>
+            <Popper open={open} anchorEl={anchorEl} placement={placement} style={{ backgroundColor: "#f7f7f7", zIndex: "2000" }} transition>
                 {({ TransitionProps }) => (
                     <Fade {...TransitionProps}>
                         <Typography
@@ -133,6 +132,6 @@ export default function PalleteIcon() {
             <IconButton size="small" onClick={handleClick("top-start")}>
                 <ColorLensOutlinedIcon style={{ color: "#5f6368" }} />
             </IconButton>
-        </Box>
+        </span>
     );
 }
