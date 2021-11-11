@@ -110,7 +110,7 @@ export default function Notes(props) {
     return (
         <div>
             <div className="main-note">
-                <MainNotesIcons />
+                <MainNotesIcons displayNote={props.displayNote}/>
             </div>
             <div className="notes">
                 {props.notes.map((note) => (
