@@ -19,7 +19,7 @@ export default function NotesIcon() {
                     <PersonAddAlt1OutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
                 <IconButton size="small">
-                    <ColorLensOutlinedIcon style={{ color: "#5f6368" }} />
+                    <PalleteIcon style={{ color: "#5f6368" }} />
                 </IconButton>
                 {/* <span><PalleteIcon/></span> */}
                 <IconButton size="small">
