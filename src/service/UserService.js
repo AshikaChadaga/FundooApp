@@ -3,6 +3,7 @@ import AxiosService from "./AxiosService"
 const axiosService = new AxiosService();
 let baseURL = "http://fundoonotes.incubation.bridgelabz.com/api/";
 
+
 class UserService{
     registration(url, data){
         return axiosService.postMethod(`${baseURL}${url}`, data);
@@ -22,6 +23,9 @@ class UserService{
 
     displayNotes(url, config){
         return axiosService.getMethod(`${baseURL}${url}`, config);
+    }
+    updateNotes(url, data, config){
+        return axiosService.postMethod(`${baseURL}${url}`, data, config);
     }
 }
 
