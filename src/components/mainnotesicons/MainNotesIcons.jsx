@@ -15,13 +15,10 @@ import Collapse from '@mui/material/Collapse';
 import InputBase from '@mui/material/InputBase';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import UserService from '../../service/UserService';
-import DisplayNotes from '../displaynotes/DisplayNotes';
-import { useHistory } from 'react-router-dom';
 
 const userService = new UserService();
 
-function MainNotesIcons() {
-    const history = useHistory();
+function MainNotesIcons(props) {
     const [checked, setChecked] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
@@ -47,7 +44,8 @@ function MainNotesIcons() {
         userService.addNotes("/notes/addNotes", data, config)
         .then(() => {
             console.log("Notes Added!");
-            window.location.reload(true);
+            props.displayNote();
+            console.log("Display notes called");
         })
         .catch(error => {
             console.error('Error encountered!', error);
