@@ -15,6 +15,7 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
 import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
 import { Button } from '@mui/material';
+import PalleteIcon from '../palleteicon/PalleteIcon';
 
 const userService = new UserService();
 
@@ -57,7 +58,7 @@ function MainNotesIcons(props) {
         <Box sx={{ display: 'flex' }}>
             <IconButton size="small"><AddAlertOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><PersonAddAlt1OutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><ColorLensOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
+            <IconButton size="small"><PalleteIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><ImageOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><ArchiveOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><MoreVertOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
