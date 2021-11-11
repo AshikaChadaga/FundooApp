@@ -7,6 +7,7 @@ const userService = new UserService();
 
 export default function DisplayNotes() {
     const [notes, setNotes] = useState([]);
+    
     const displayNote = () => {
         let config = {
             headers: {
@@ -32,7 +33,7 @@ export default function DisplayNotes() {
 
     return (
         <div>
-            <Notes notes={notes}/>
+            <Notes notes={notes} displayNote={displayNote}/>
         </div>
     )
 }
