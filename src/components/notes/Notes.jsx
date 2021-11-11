@@ -6,10 +6,8 @@ import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import IconButton from "@mui/material/IconButton";
-
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
@@ -20,8 +18,8 @@ import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import { styled } from "@mui/material/styles";
 import UserService from '../../service/UserService';
+import PalleteIcon from '../palleteicon/PalleteIcon';
 
 const userService = new UserService();
 
@@ -48,7 +46,7 @@ export default function Notes(props) {
     const handleClickOpen = (note) => {
         setOpen(true);
         setTitle(note.title);
-        setNoteId(note.id)
+        setNoteId(note.id);
         setDescription(note.description);
     };
     const handleClose = () => {
@@ -81,14 +79,14 @@ export default function Notes(props) {
 
     const bottomPart = (
         <Box sx={{ display: "flex" }}>
-            <IconButton>
+            <IconButton size="small">
                 <AddAlertOutlinedIcon sx={{ margin: "5px" }} />
             </IconButton>
             <IconButton>
                 <PersonAddAlt1OutlinedIcon sx={{ margin: "5px" }} />
             </IconButton>
             <IconButton>
-                <ColorLensOutlinedIcon sx={{ margin: "5px" }} />
+                <PalleteIcon sx={{ margin: "5px" }} />
             </IconButton>
             <IconButton>
                 <ImageOutlinedIcon sx={{ margin: "5px" }} />
