@@ -95,7 +95,7 @@ export default function PalleteIcon() {
                             />
                             <CircleIcon
                                 style={{
-                                    border: "1px solid ##d7aefb",
+                                    border: "1px solid #d7aefb",
                                     borderRadius: "50%",
                                     marginRight: "5px",
                                     color: "#d7aefb"

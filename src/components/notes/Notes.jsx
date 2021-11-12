@@ -9,7 +9,6 @@ import IconButton from "@mui/material/IconButton";
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
-import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
 import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
@@ -20,6 +19,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import UserService from '../../service/UserService';
 import PalleteIcon from '../palleteicon/PalleteIcon';
+import MenuDropdown from '../menudropdown/MenuDropdown';
 
 const userService = new UserService();
 
@@ -32,6 +32,7 @@ const bottomIcons = (
 
 export default function Notes(props) {
     const [hovered, setActive] = useState(false);
+    const [style, setStyle] = useState({display: 'none'});
     const [noteid, setNoteId] = useState("");
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -53,7 +54,7 @@ export default function Notes(props) {
         setOpen(false);
     };
 
-    const updateNote =() => {
+    const updateNote = () => {
         handleClose();
         let data = {
             noteId: noteid,
@@ -66,14 +67,14 @@ export default function Notes(props) {
             }
         };
         userService.updateNotes("/notes/updateNotes", data, config)
-        .then(() => {
-            console.log("Notes Updated!");
-            props.displayNote();
-            console.log("Display updated notes called");
-        })
-        .catch(error => {
-            console.error('Error encountered!', error);
-          });
+            .then(() => {
+                console.log("Notes Updated!");
+                props.displayNote();
+                console.log("Display updated notes called");
+            })
+            .catch(error => {
+                console.error('Error encountered!', error);
+            });
 
     }
 
@@ -95,7 +96,7 @@ export default function Notes(props) {
                 <ArchiveOutlinedIcon sx={{ margin: "5px" }} />
             </IconButton>
             <IconButton>
-                <MoreVertOutlinedIcon sx={{ margin: "5px" }} />
+                <MenuDropdown sx={{ margin: "5px" }} />
             </IconButton>
             <IconButton>
                 <UndoOutlinedIcon sx={{ margin: "5px" }} />
@@ -126,23 +127,23 @@ export default function Notes(props) {
         </Box>
     );
 
-    const noteDiv = () =>{
-        return(
-        <div className="notes">
+    const noteDiv = () => {
+        return (
+            <div className="notes">
                 {props.notes.map((note) => (
                     <Box onMouseEnter={active} onMouseLeave={inactive}>
                         <div className="note">
                             <div className="note-content" onClick={() => handleClickOpen(note)}>
                                 <span className="title">{note.title}</span>
-                                <Fade in={hovered}>
+                                <span className="pin-icons">
                                     <IconButton size="small" >
                                         <PushPinOutlinedIcon style={{ color: "#5f6368" }} />
                                     </IconButton>
-                                </Fade>
+                                </span>
                                 <p className="content">{note.description}</p>
                             </div>
                             <div className="icons">
-                                <Fade in={hovered}>{bottomIcons}</Fade>
+                                {bottomIcons}
                             </div>
                         </div>
                     </Box>
@@ -159,37 +160,37 @@ export default function Notes(props) {
             <div className="notesdiv">
                 {noteDiv()}
             </div>
-                <Dialog open={open} onClose={handleClose}>
+            <Dialog open={open} onClose={handleClose}>
                 <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        width: "100%",
+                        justifyContent: "space-between"
+                    }}
+                >
+                    <Paper
                         sx={{
-                            display: "flex",
-                            flexDirection: "column",
-                            width: "100%",
-                            justifyContent: "space-between"
+                            padding: "5px 20px 5px 20px",
+                            border: "1px solid lightgray",
+                            borderRadius: "10px"
                         }}
                     >
-                        <Paper
-                            sx={{
-                                padding: "5px 20px 5px 20px",
-                                border: "1px solid lightgray",
-                                borderRadius: "10px"
-                            }}
-                        >
-                            {takenotes}
-                            <Box>
-                                <InputBase
-                                    defaultValue={description}
-                                    onChange={(e) => setDescription(e.target.value)}
-                                    placeholder="Take a note... "
-                                    multiline
-                                    fullWidth
-                                    sx={{ flexGrow: 1, padding: "20px 0" }}
-                                />
-                            </Box>
-                            <DialogActions>{bottomPart}</DialogActions>
-                        </Paper>
-                    </Box>
-                </Dialog>
+                        {takenotes}
+                        <Box>
+                            <InputBase
+                                defaultValue={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Take a note... "
+                                multiline
+                                fullWidth
+                                sx={{ flexGrow: 1, padding: "20px 0" }}
+                            />
+                        </Box>
+                        <DialogActions>{bottomPart}</DialogActions>
+                    </Paper>
+                </Box>
+            </Dialog>
         </div>
     )
 }

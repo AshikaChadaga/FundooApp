@@ -171,7 +171,7 @@ export function Header() {
                         >
                             Keep
                         </Typography>
-                        <Search>
+                        <Search style={{marginLeft: "0px"}}>
                             <SearchIconWrapper>
                                 <SearchIcon />
                             </SearchIconWrapper>

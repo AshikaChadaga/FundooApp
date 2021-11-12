@@ -8,14 +8,13 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import UserService from '../../service/UserService';
 import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
 import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
-import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
 import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
 import { Button } from '@mui/material';
 import PalleteIcon from '../palleteicon/PalleteIcon';
+import MenuDropdown from '../menudropdown/MenuDropdown';
 
 const userService = new UserService();
 
@@ -52,6 +51,8 @@ function MainNotesIcons(props) {
         .catch(error => {
             console.error('Error encountered!', error);
           });
+        setTitle("");
+        setContent("");
     }
 
     const bottomIcons = (
@@ -61,7 +62,7 @@ function MainNotesIcons(props) {
             <IconButton size="small"><PalleteIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><ImageOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><ArchiveOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><MoreVertOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
+            <IconButton size="small"><MenuDropdown sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><UndoOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
             <IconButton size="small"><RedoOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
             <Box sx={{ flexGrow: 1 }}></Box>
@@ -71,7 +72,7 @@ function MainNotesIcons(props) {
     const notestitle = (
         <Box sx={{ display: 'flex' }}>
             <InputBase
-                defaultValue={reset}
+                value={title}
                 name="title"
                 placeholder="Title"
                 sx={{ flexGrow: '1' }}
@@ -87,7 +88,7 @@ function MainNotesIcons(props) {
                     <Collapse in={checked}>{notestitle}</Collapse>
                     <Box>
                         <InputBase
-                            defaultValue={reset}
+                            value={content}
                             name="description"
                             placeholder="Take a note... "
                             multiline
