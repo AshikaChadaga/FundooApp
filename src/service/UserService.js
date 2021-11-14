@@ -1,4 +1,4 @@
-import AxiosService from "./AxiosService"
+import AxiosService from "./AxiosService.js"
 
 const axiosService = new AxiosService();
 let baseURL = "http://fundoonotes.incubation.bridgelabz.com/api/";
