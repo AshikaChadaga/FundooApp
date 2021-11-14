@@ -7,7 +7,8 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import PalleteIcon from '../palleteicon/PalleteIcon';
 import MenuDropdown from '../menudropdown/MenuDropdown';
 
-export default function NotesIcon() {
+
+export default function NotesIcon(props) {
     return (
         <div>
             <div className="icons">
@@ -18,7 +19,7 @@ export default function NotesIcon() {
                     <PersonAddAlt1OutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
                 <IconButton size="small">
-                    <PalleteIcon style={{ color: "#5f6368" }} />
+                    {props.mode == "update" ? <PalleteIcon displayNote={props.displayNote} noteId={props.noteId} setColor={props.setColor} mode="update" /> : <PalleteIcon displayNote={props.displayNote} setColor={props.setColor} mode="create" />}
                 </IconButton>
                 <IconButton size="small">
                     <ImageOutlinedIcon style={{ color: "#5f6368" }} />

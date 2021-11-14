@@ -6,24 +6,16 @@ import Collapse from '@mui/material/Collapse';
 import InputBase from '@mui/material/InputBase';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import UserService from '../../service/UserService';
-import AddAlertOutlinedIcon from '@mui/icons-material/AddAlertOutlined';
-import PersonAddAlt1OutlinedIcon from '@mui/icons-material/PersonAddAlt1Outlined';
-import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
-import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
-import UndoOutlinedIcon from '@mui/icons-material/UndoOutlined';
-import RedoOutlinedIcon from '@mui/icons-material/RedoOutlined';
 import { Button } from '@mui/material';
-import PalleteIcon from '../palleteicon/PalleteIcon';
-import MenuDropdown from '../menudropdown/MenuDropdown';
+import NotesIcon from '../notesicons/NotesIcon';
 
 const userService = new UserService();
 
 function MainNotesIcons(props) {
-    const [reset, setReset] = useState("");
     const [checked, setChecked] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-
+    const [color, setColor] = useState("#fff");
     const open = () => {
         setChecked(true);
     }
@@ -36,6 +28,7 @@ function MainNotesIcons(props) {
         let data = {
             title: title,
             description: content,
+            color: color
         };
         let config = {
             headers: {
@@ -43,32 +36,18 @@ function MainNotesIcons(props) {
             }
         };
         userService.addNotes("/notes/addNotes", data, config)
-        .then(() => {
-            console.log("Notes Added!");
-            props.displayNote();
-            console.log("Display notes called");
-        })
-        .catch(error => {
-            console.error('Error encountered!', error);
-          });
+            .then(() => {
+                console.log("Notes Added!");
+                props.displayNote();
+                console.log("Display notes called");
+            })
+            .catch(error => {
+                console.error('Error encountered!', error);
+            });
         setTitle("");
         setContent("");
     }
 
-    const bottomIcons = (
-        <Box sx={{ display: 'flex' }}>
-            <IconButton size="small"><AddAlertOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><PersonAddAlt1OutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><PalleteIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><ImageOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><ArchiveOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><MenuDropdown sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><UndoOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <IconButton size="small"><RedoOutlinedIcon sx={{ margin: '5px' }} /></IconButton>
-            <Box sx={{ flexGrow: 1 }}></Box>
-            <Button onClick={saveNote} size="small" sx={{ color: '#5f6368', textTransform: 'none', fontWeight: 'bolder', fontSize: '0.875rem' }}>Close</Button>
-        </Box>
-    );
     const notestitle = (
         <Box sx={{ display: 'flex' }}>
             <InputBase
@@ -84,7 +63,7 @@ function MainNotesIcons(props) {
     return (
         <div>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%', marginLeft: '25vw', justifyContent: 'space-between' }}>
-                <Paper sx={{ padding: '5px 20px 5px 20px', border: '1px solid lightgray', borderRadius: '10px', }}>
+                <Paper sx={{ padding: '5px 20px 5px 20px', border: '1px solid lightgray', borderRadius: '10px', backgroundColor: color }}>
                     <Collapse in={checked}>{notestitle}</Collapse>
                     <Box>
                         <InputBase
@@ -99,10 +78,16 @@ function MainNotesIcons(props) {
                             onChange={(e) => setContent(e.target.value)}
                         />
                     </Box>
-                    <Collapse in={checked}>{bottomIcons}</Collapse>
+                    <Collapse in={checked}>
+                        <Box sx={{ display: 'flex', justifyContent:"space-between"}}>
+                            <NotesIcon setColor={setColor} mode="create"/>
+                            <Button onClick={saveNote} size="small" sx={{ color: '#5f6368', textTransform: 'none', fontWeight: 'bolder', fontSize: '0.875rem' }}>Close</Button>
+                        </Box>
+
+                    </Collapse>
                 </Paper>
             </Box>
-        </div>
+        </div >
     )
 }
 
