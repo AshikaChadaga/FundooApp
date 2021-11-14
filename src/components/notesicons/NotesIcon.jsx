@@ -31,6 +31,7 @@ export default function NotesIcon(props) {
                 .then(()=>{
                     console.log("Successfully Archived Notes");
                     props.displayNote();  
+                    props.handleClose();
                 })
                 .catch(error => {
                     console.error('Error encountered while Archiving!', error);
@@ -57,7 +58,7 @@ export default function NotesIcon(props) {
                     <ArchiveOutlinedIcon style={{ color: "#5f6368" }}/>
                 </IconButton>
                 <IconButton size="small">
-                    <MenuDropdown style={{ color: "#5f6368" }} />
+                    <MenuDropdown handleClose={props.handleClose} mode="update" setIsDeleted={props.setIsDeleted} displayNote={props.displayNote} noteId={props.noteId} style={{ color: "#5f6368" }} />
                 </IconButton>
             </div>
         </div>
