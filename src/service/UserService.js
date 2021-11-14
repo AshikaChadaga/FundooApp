@@ -20,11 +20,13 @@ class UserService{
     addNotes(url, data, config){
         return axiosService.postMethod(`${baseURL}${url}`, data, config);
     }
-
     displayNotes(url, config){
         return axiosService.getMethod(`${baseURL}${url}`, config);
     }
     updateNotes(url, data, config){
+        return axiosService.postMethod(`${baseURL}${url}`, data, config);
+    }
+    archive(url, data, config){
         return axiosService.postMethod(`${baseURL}${url}`, data, config);
     }
 }
