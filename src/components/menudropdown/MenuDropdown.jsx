@@ -7,6 +7,8 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import IconButton from "@mui/material/IconButton";
 import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
+import UserService from '../../service/UserService';
+const userService = new UserService();
 
 const options = [
   "Delete note",
@@ -17,8 +19,9 @@ const options = [
   "Copy to Google Docs"
 ];
 
-export default function MenuDropdown() {
+export default function MenuDropdown(props) {
   const [open, setOpen] = React.useState(false);
+
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -31,6 +34,40 @@ export default function MenuDropdown() {
     }
     setOpen(false);
   };
+
+  const handleMenuItemClick = (event, index) => {
+    if(index==0){
+      deleteNote();
+    }
+  };
+
+  const perfomOperation = (option) => {
+    switch (option) {
+      case "Delete note": deleteNote();
+    }
+  }
+
+  const deleteNote = () => {
+    let data = {
+      noteIdList: [props.noteId],
+      isDeleted: true
+    }
+    let config = {
+      headers: {
+        'Authorization': localStorage.getItem("id"),
+      }
+    };
+    userService.deleteNote('/notes/trashNotes', data, config)
+      .then(() => {
+        console.log("Note deleted Succesfully");
+        props.handleClose();
+        props.displayNote();
+        console.log("Display notes after delete called");
+      })
+      .catch(error => {
+        console.error('Error encountered While Deleting Note !', error);
+      });
+  }
 
   return (
     <span>
@@ -50,7 +87,7 @@ export default function MenuDropdown() {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu">
                   {options.map((option, index) => (
-                    <MenuItem key={option}>{option}</MenuItem>
+                    <MenuItem onClick={(event) => handleMenuItemClick(event, index)} key={option}>{option}</MenuItem>
                   ))}
                 </MenuList>
               </ClickAwayListener>
