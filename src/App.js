@@ -16,8 +16,8 @@ function App() {
           <Route exact path='/' component={SignUp}></Route>
           <Route exact path='/signin' component={SignIn}></Route>
           <Route exact path='/forgotemail' component={ForgotEmail}></Route>
-          <Route path='/resetpassword' component={ResetPassword}></Route>
-          <Route exact path='/Dashboard' component={Dashboard}></Route>
+          <ProtectedRoute path='/resetpassword' component={ResetPassword}></ProtectedRoute>
+          <ProtectedRoute exact path='/Dashboard' component={Dashboard}></ProtectedRoute>
           <Route exact path='*' component={()=> "404 Not Found"}></Route>
         </Switch>
       </div>
