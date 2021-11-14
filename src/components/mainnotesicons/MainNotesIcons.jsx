@@ -8,7 +8,6 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import UserService from '../../service/UserService';
 import { Button } from '@mui/material';
 import NotesIcon from '../notesicons/NotesIcon';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 const userService = new UserService();
 
