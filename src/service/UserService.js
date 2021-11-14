@@ -29,6 +29,9 @@ class UserService{
     archive(url, data, config){
         return axiosService.postMethod(`${baseURL}${url}`, data, config);
     }
+    deleteNote(url, data, config){
+        return axiosService.postMethod(`${baseURL}${url}`, data, config);
+    }
 }
 
 export default UserService
