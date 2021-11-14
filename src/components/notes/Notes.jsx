@@ -21,10 +21,11 @@ export default function Notes(props) {
     const [description, setDescription] = useState("");
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("#fff");
+    const [isArchived, setIsArchived] = useState(false);
 
     const handleClickOpen = (note) => {
         setOpen(true);
-        setTitle(note.title);
+        setTitle(note.title); 
         setNoteId(note.id);
         setDescription(note.description);
     };
@@ -51,16 +52,16 @@ export default function Notes(props) {
                 console.log("Display updated notes called");
             })
             .catch(error => {
-                console.error('Error encountered!', error);
+                console.error('Error encountered While Updating!', error);
             });
 
     }
 
     const takenotes = (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex"}}>
             <InputBase onChange={(e) => setTitle(e.target.value)} defaultValue={title} placeholder="Title" sx={{ flexGrow: "1" }} />
             <IconButton>
-                <PushPinOutlinedIcon />
+                <PushPinOutlinedIcon/>
             </IconButton>
         </Box>
     );
@@ -68,7 +69,7 @@ export default function Notes(props) {
     const noteDiv = () => {
         return (
             <div className="notes">
-                {props.notes.map((note) => (
+                {props.notes.filter(each => each.isArchived == false).map((note) => (
                     <Box >
                         <Paper sx={{
                             border: "1px solid lightgray",
@@ -87,7 +88,7 @@ export default function Notes(props) {
                                     <p className="content">{note.description}</p>
                                 </div>
                                 <div className="icons">
-                                    <NotesIcon displayNote={props.displayNote} noteId={note.id} setColor={setColor} mode="update" />
+                                    <NotesIcon setIsArchived={setIsArchived} displayNote={props.displayNote} noteId={note.id} setColor={setColor} mode="update" />
                                 </div>
 
                             {/* </div> */}
@@ -135,7 +136,7 @@ export default function Notes(props) {
                             />
                         </Box>
                         <DialogActions><Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                            <NotesIcon displayNote={props.displayNote} noteId={noteid} setColor={setColor} mode="update" />
+                            <NotesIcon setIsArchived={setIsArchived} displayNote={props.displayNote} noteId={noteid} setColor={setColor} mode="update" />
                             <Button onClick={updateNote} size="small" sx={{ color: '#5f6368', textTransform: 'none', fontWeight: 'bolder', fontSize: '0.875rem' }}>Close</Button>
                         </Box></DialogActions>
                     </Paper>

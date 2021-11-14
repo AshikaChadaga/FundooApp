@@ -16,6 +16,9 @@ function MainNotesIcons(props) {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [color, setColor] = useState("#fff");
+    const [isArchived, setIsArchived] = useState("false");
+    const [isDeleted, setIsDeleted] = useState("false");
+    const [useEffectCall, setUseEffectCall] = useState(false);
     const open = () => {
         setChecked(true);
     }
@@ -28,7 +31,8 @@ function MainNotesIcons(props) {
         let data = {
             title: title,
             description: content,
-            color: color
+            color: color,
+            isArchived: isArchived
         };
         let config = {
             headers: {
@@ -42,10 +46,12 @@ function MainNotesIcons(props) {
                 console.log("Display notes called");
             })
             .catch(error => {
-                console.error('Error encountered!', error);
+                console.error('Error encountered While Adding Notes!', error);
             });
         setTitle("");
         setContent("");
+        setColor("#fff");
+        setIsArchived(false);
     }
 
     const notestitle = (
@@ -60,6 +66,11 @@ function MainNotesIcons(props) {
             <IconButton><PushPinOutlinedIcon /></IconButton>
         </Box>
     );
+
+    useEffect(()=> {
+        saveNote();
+    }, [useEffectCall])
+
     return (
         <div>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '50%', marginLeft: '25vw', justifyContent: 'space-between' }}>
@@ -80,7 +91,7 @@ function MainNotesIcons(props) {
                     </Box>
                     <Collapse in={checked}>
                         <Box sx={{ display: 'flex', justifyContent:"space-between"}}>
-                            <NotesIcon setColor={setColor} mode="create"/>
+                            <NotesIcon useEffectCall={useEffectCall} setUseEffectCall={setUseEffectCall} setIsArchived={setIsArchived} setColor={setColor} mode="create"/>
                             <Button onClick={saveNote} size="small" sx={{ color: '#5f6368', textTransform: 'none', fontWeight: 'bolder', fontSize: '0.875rem' }}>Close</Button>
                         </Box>
 

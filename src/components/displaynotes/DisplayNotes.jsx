@@ -19,10 +19,11 @@ export default function DisplayNotes() {
                 const data = res.data;
                 let notes = data;
                 setNotes(notes.data.data);
+                console.log(notes);
                 console.log("Notes Displayed!");
             })
             .catch(error => {
-                console.error('Error encountered!', error);
+                console.error('Error encountered while Displaying Notes!', error);
             });
     }
 

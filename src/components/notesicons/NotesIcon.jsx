@@ -6,9 +6,38 @@ import IconButton from "@mui/material/IconButton";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import PalleteIcon from '../palleteicon/PalleteIcon';
 import MenuDropdown from '../menudropdown/MenuDropdown';
-
+import UserService from '../../service/UserService';
+const userService = new UserService();
 
 export default function NotesIcon(props) {
+
+    const updateArchive = () => {
+        if(props.mode == "create"){
+            props.setIsArchived(true);
+            console.log("Created Archived Notes");
+            props.setUseEffectCall(!props.useEffectcall);            
+        }
+        else{
+            let data={
+                noteIdList: [props.noteId],
+                isArchived: true
+            };
+            let config = {
+                headers: {
+                    'Authorization': localStorage.getItem("id"),
+                }
+            };
+            userService.archive("/notes/archiveNotes", data, config)
+                .then(()=>{
+                    console.log("Successfully Archived Notes");
+                    props.displayNote();  
+                })
+                .catch(error => {
+                    console.error('Error encountered while Archiving!', error);
+                });           
+        }
+    }
+
     return (
         <div>
             <div className="icons">
@@ -24,8 +53,8 @@ export default function NotesIcon(props) {
                 <IconButton size="small">
                     <ImageOutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
-                <IconButton size="small">
-                    <ArchiveOutlinedIcon style={{ color: "#5f6368" }} />
+                <IconButton size="small" onClick={() => updateArchive()}>
+                    <ArchiveOutlinedIcon style={{ color: "#5f6368" }}/>
                 </IconButton>
                 <IconButton size="small">
                     <MenuDropdown style={{ color: "#5f6368" }} />

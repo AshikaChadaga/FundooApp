@@ -38,7 +38,7 @@ export default function PalleteIcon(props) {
                     console.log("Display updated color of notes called");
                 })
                 .catch(error => {
-                    console.error('Error encountered!', error);
+                    console.error('Error encountered! while Updating Color', error);
                 });
         }
     }
