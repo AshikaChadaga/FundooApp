@@ -8,6 +8,7 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import UserService from '../../service/UserService';
 import { Button } from '@mui/material';
 import NotesIcon from '../notesicons/NotesIcon';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const userService = new UserService();
 
@@ -17,7 +18,6 @@ function MainNotesIcons(props) {
     const [content, setContent] = useState("");
     const [color, setColor] = useState("#fff");
     const [isArchived, setIsArchived] = useState("false");
-    const [isDeleted, setIsDeleted] = useState("false");
     const [useEffectCall, setUseEffectCall] = useState(false);
     const open = () => {
         setChecked(true);
