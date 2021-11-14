@@ -22,10 +22,11 @@ export default function Notes(props) {
     const [open, setOpen] = useState(false);
     const [color, setColor] = useState("#fff");
     const [isArchived, setIsArchived] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     const handleClickOpen = (note) => {
         setOpen(true);
-        setTitle(note.title); 
+        setTitle(note.title);
         setNoteId(note.id);
         setDescription(note.description);
     };
@@ -58,10 +59,10 @@ export default function Notes(props) {
     }
 
     const takenotes = (
-        <Box sx={{ display: "flex"}}>
+        <Box sx={{ display: "flex" }}>
             <InputBase onChange={(e) => setTitle(e.target.value)} defaultValue={title} placeholder="Title" sx={{ flexGrow: "1" }} />
             <IconButton>
-                <PushPinOutlinedIcon/>
+                <PushPinOutlinedIcon />
             </IconButton>
         </Box>
     );
@@ -69,29 +70,27 @@ export default function Notes(props) {
     const noteDiv = () => {
         return (
             <div className="notes">
-                {props.notes.filter(each => each.isArchived == false).map((note) => (
+                {props.notes.filter(each => each.isArchived == false && each.isDeleted == false).map((note) => (
                     <Box >
-                        <Paper sx={{
+                        <Paper className="note" sx={{
                             border: "1px solid lightgray",
                             borderRadius: "10px",
                             backgroundColor: note.color,
                             padding: "5%"
                         }}>
-                            {/* <div className="note"> */}
-                                <div className="note-content" onClick={() => handleClickOpen(note)}>
-                                    <span className="title">{note.title}</span>
-                                    <span className="pin-icons">
-                                        <IconButton size="small" >
-                                            <PushPinOutlinedIcon style={{ color: "#5f6368" }} />
-                                        </IconButton>
-                                    </span>
-                                    <p className="content">{note.description}</p>
-                                </div>
-                                <div className="icons">
-                                    <NotesIcon setIsArchived={setIsArchived} displayNote={props.displayNote} noteId={note.id} setColor={setColor} mode="update" />
-                                </div>
 
-                            {/* </div> */}
+                            <div className="note-content" onClick={() => handleClickOpen(note)}>
+                                <span className="title">{note.title}</span>
+                                <span className="pin-icons">
+                                    <IconButton size="small" >
+                                        <PushPinOutlinedIcon style={{ color: "#5f6368" }} />
+                                    </IconButton>
+                                </span>
+                                <p className="content">{note.description}</p>
+                            </div>
+                            <div className="icons">
+                                <NotesIcon handleClose={handleClose} setIsDeleted={setIsDeleted} setIsArchived={setIsArchived} displayNote={props.displayNote} noteId={note.id} setColor={setColor} mode="update" />
+                            </div>
                         </Paper>
                     </Box>
                 ))}
@@ -136,7 +135,7 @@ export default function Notes(props) {
                             />
                         </Box>
                         <DialogActions><Box sx={{ display: 'flex', justifyContent: "space-between" }}>
-                            <NotesIcon setIsArchived={setIsArchived} displayNote={props.displayNote} noteId={noteid} setColor={setColor} mode="update" />
+                            <NotesIcon setIsDeleted={setIsDeleted} handleClose={handleClose} setIsArchived={setIsArchived} displayNote={props.displayNote} noteId={noteid} setColor={setColor} mode="update" />
                             <Button onClick={updateNote} size="small" sx={{ color: '#5f6368', textTransform: 'none', fontWeight: 'bolder', fontSize: '0.875rem' }}>Close</Button>
                         </Box></DialogActions>
                     </Paper>
