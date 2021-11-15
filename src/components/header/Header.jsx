@@ -13,7 +13,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import LightbulbOutlinedIcon from "@mui/icons-material/LightbulbOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
@@ -24,10 +23,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import InputBase from "@mui/material/InputBase";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
-import DisplayNotes from '../displaynotes/DisplayNotes';
+import { useHistory } from "react-router";
 
 const drawerWidth = 240;
 const state = false;
+
 
 const Search = styled("div")(({ theme }) => ({
     color: "#5f6368",
@@ -135,6 +135,8 @@ const Drawer = styled(MuiDrawer, {
 
 export function Header() {
 
+  const history = useHistory();
+
     const [open, setOpen] = React.useState(state);
 
     const handleDrawerOpen = () => {
@@ -171,7 +173,7 @@ export function Header() {
                         >
                             Keep
                         </Typography>
-                        <Search style={{marginLeft: "0px"}}>
+                        <Search style={{ marginLeft: "0px" }}>
                             <SearchIconWrapper>
                                 <SearchIcon />
                             </SearchIconWrapper>
@@ -216,9 +218,9 @@ export function Header() {
                                         ) : index === 2 ? (
                                             <EditOutlinedIcon />
                                         ) : index === 3 ? (
-                                            <ArchiveOutlinedIcon />
+                                            <ArchiveOutlinedIcon onClick={()=>{history.push("/dashboard/archive")}}/>
                                         ) : (
-                                            <DeleteOutlineOutlinedIcon />
+                                            <DeleteOutlineOutlinedIcon onClick={()=>{history.push("/dashboard/trash")}}/>
                                         )}
                                     </ListItemIcon>
                                     <ListItemText primary={text} />
@@ -229,7 +231,6 @@ export function Header() {
                 </Drawer>
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                     <DrawerHeader />
-                    <DisplayNotes />
                 </Box>
             </Box>
         </div>
