@@ -26,6 +26,7 @@ export default function Notes(props) {
 
     const handleClickOpen = (note) => {
         setOpen(true);
+        setColor(note.color);
         setTitle(note.title);
         setNoteId(note.id);
         setDescription(note.description);
@@ -144,4 +145,3 @@ export default function Notes(props) {
         </div>
     )
 }
-
