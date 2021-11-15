@@ -5,7 +5,7 @@ import ForgotEmail from './pages/forgotemail/ForgotEmail';
 import ResetPassword from './pages/resetpassword/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard';
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
-import {Switch} from 'react-router'
+import { Switch } from 'react-router'
 import { ProtectedRoute } from './components/protectedroute/ProtectedRoute';
 
 function App() {
