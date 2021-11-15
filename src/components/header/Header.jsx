@@ -212,7 +212,7 @@ export function Header() {
                                 <ListItem button key={text}>
                                     <ListItemIcon>
                                         {index === 0 ? (
-                                            <LightbulbOutlinedIcon />
+                                            <LightbulbOutlinedIcon onClick={()=>{history.push("/dashboard")}}/>
                                         ) : index === 1 ? (
                                             <NotificationsNoneOutlinedIcon />
                                         ) : index === 2 ? (
