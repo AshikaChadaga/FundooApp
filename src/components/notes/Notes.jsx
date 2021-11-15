@@ -119,8 +119,6 @@ export default function Notes(props) {
                     <Paper
                         sx={{
                             padding: "5px 20px 5px 20px",
-                            border: "1px solid lightgray",
-                            borderRadius: "10px",
                             backgroundColor: color
                         }}
                     >
