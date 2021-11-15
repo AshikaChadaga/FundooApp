@@ -97,7 +97,7 @@ function MainNotesIcons(props) {
                     </Collapse>
                 </Paper>
             </Box>
-        </div >
+        </div>
     )
 }
 
