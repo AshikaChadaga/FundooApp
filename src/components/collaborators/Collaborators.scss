@@ -1,0 +1,21 @@
+$gothic: "Zen Kaku Gothic Antique", sans-serif;
+.login-email{
+    font-family: $gothic;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    margin-bottom: 1.5vh;
+    .name{
+        font-weight: bold;
+        padding-left: 1vw;
+        padding-top: 0vw;
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+    .email{
+        padding-left: 1vw;
+        padding-top: 0vw;
+        margin-top: 0%;
+        margin-bottom: 0%;
+    }
+}
