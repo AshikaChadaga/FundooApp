@@ -38,6 +38,9 @@ class UserService {
     displayDeletedNotes(url, config) {
         return axiosService.getMethod(`${baseURL}${url}`, config);
     }
+    getResult(url, data, config){
+        return axiosService.postMethod(`${baseURL}${url}`, data, config);
+    }
 }
 
 export default UserService
