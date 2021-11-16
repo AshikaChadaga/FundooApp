@@ -7,6 +7,7 @@ import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import PalleteIcon from '../palleteicon/PalleteIcon';
 import MenuDropdown from '../menudropdown/MenuDropdown';
 import UserService from '../../service/UserService';
+import Collaborators from '../collaborators/Collaborators';
 const userService = new UserService();
 
 export default function NotesIcon(props) {
@@ -45,9 +46,7 @@ export default function NotesIcon(props) {
                 <IconButton size="small" >
                     <AddAlertOutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
-                <IconButton size="small">
-                    <PersonAddAlt1OutlinedIcon style={{ color: "#5f6368" }} />
-                </IconButton>
+                <Collaborators/>
                 <IconButton size="small">
                     {props.mode == "update" ? <PalleteIcon displayNote={props.displayNote} noteId={props.noteId} setColor={props.setColor} mode="update" /> : <PalleteIcon displayNote={props.displayNote} setColor={props.setColor} mode="create" />}
                 </IconButton>
