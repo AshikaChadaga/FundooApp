@@ -41,11 +41,6 @@ export default function MenuDropdown(props) {
     }
   };
 
-  const perfomOperation = (option) => {
-    switch (option) {
-      case "Delete note": deleteNote();
-    }
-  }
 
   const deleteNote = () => {
     let data = {
