@@ -20,7 +20,8 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
+import { deepOrange, deepPurple } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 import InputBase from "@mui/material/InputBase";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import { useHistory } from "react-router";
@@ -135,7 +136,19 @@ const Drawer = styled(MuiDrawer, {
 
 export function Header() {
 
-  const history = useHistory();
+    const history = useHistory();
+    console.log("route to pages called");
+    const routeToPages = (index) => {
+        if(index==0){
+            history.push("/dashboard");
+        }
+        else if(index==3){
+            history.push("/dashboard/archive");
+        }
+        else if(index==4){
+            history.push("/dashboard/trash");
+        }
+    }
 
     const [open, setOpen] = React.useState(state);
 
@@ -191,16 +204,7 @@ export function Header() {
                         >
                             <AppsRoundedIcon style={{ color: "#5f6368" }} />
                         </IconButton>
-
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            color="inherit"
-                        >
-                            <AccountCircle style={{ color: "#5f6368" }} />
-                        </IconButton>
+                        <Avatar sx={{ bgcolor: deepPurple[500] }}>{localStorage.getItem("firstName").charAt(0)}</Avatar>
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -210,17 +214,17 @@ export function Header() {
                         {["Notes", "Reminders", "Edit labels", "Archive", "Trash"].map(
                             (text, index) => (
                                 <ListItem button key={text}>
-                                    <ListItemIcon>
+                                    <ListItemIcon >
                                         {index === 0 ? (
-                                            <LightbulbOutlinedIcon onClick={()=>{history.push("/dashboard")}}/>
+                                            <LightbulbOutlinedIcon onClick={() => routeToPages(index)}/>
                                         ) : index === 1 ? (
                                             <NotificationsNoneOutlinedIcon />
                                         ) : index === 2 ? (
                                             <EditOutlinedIcon />
                                         ) : index === 3 ? (
-                                            <ArchiveOutlinedIcon onClick={()=>{history.push("/dashboard/archive")}}/>
+                                            <ArchiveOutlinedIcon onClick={() => routeToPages(index)}/>
                                         ) : (
-                                            <DeleteOutlineOutlinedIcon onClick={()=>{history.push("/dashboard/trash")}}/>
+                                            <DeleteOutlineOutlinedIcon onClick={() => routeToPages(index)}/>
                                         )}
                                     </ListItemIcon>
                                     <ListItemText primary={text} />
