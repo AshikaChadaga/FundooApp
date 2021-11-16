@@ -48,9 +48,12 @@ export class SignIn extends Component {
             };
             userService.login("/user/login", data)
                 .then((res) => {
-                    console.log("User Logged in!")
-                    localStorage.setItem("id", res.data.id)
-                    
+                    console.log("User Logged in!");
+                    localStorage.setItem("id", res.data.id);
+                    localStorage.setItem("firstName", res.data.firstName);
+                    localStorage.setItem("lastName", res.data.lastName);
+                    localStorage.setItem("email", res.data.email);
+                                       
                     Auth.login(() => {
                         this.props.history.push("/dashboard");
                     })
