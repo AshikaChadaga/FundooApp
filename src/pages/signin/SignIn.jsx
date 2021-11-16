@@ -6,7 +6,6 @@ import './SignIn.scss'
 import UserService from '../../service/UserService';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Auth from '../../components/Authentication/Authentication'
-// import { ToastContainer, toast } from "react-toastify";
 
 const userService = new UserService();
 
