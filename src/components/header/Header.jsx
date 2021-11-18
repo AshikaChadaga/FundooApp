@@ -20,27 +20,29 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ArchiveOutlinedIcon from "@mui/icons-material/ArchiveOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { deepOrange, deepPurple } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
 import InputBase from "@mui/material/InputBase";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import { useHistory } from "react-router";
+import Logout from '../logout/Logout';
 
 const drawerWidth = 240;
 const state = false;
 
 
 const Search = styled("div")(({ theme }) => ({
+    overflowX: "hidden",
     color: "#5f6368",
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: "#f1f3f4",
-    marginRight: theme.spacing(100),
+    // marginRight: theme.spacing(110),
     marginLeft: 20,
-    width: "150%",
-    [theme.breakpoints.up("sm")]: {
+    minWidth: "35%",
+    [theme.breakpoints.down("sm")]: {
+        marginRight: theme.spacing(50),
         marginLeft: theme.spacing(10),
         width: "auto"
+
     }
 }));
 
@@ -139,13 +141,13 @@ export function Header() {
     const history = useHistory();
     console.log("route to pages called");
     const routeToPages = (index) => {
-        if(index==0){
+        if (index == 0) {
             history.push("/dashboard");
         }
-        else if(index==3){
+        else if (index == 3) {
             history.push("/dashboard/archive");
         }
-        else if(index==4){
+        else if (index == 4) {
             history.push("/dashboard/trash");
         }
     }
@@ -180,7 +182,7 @@ export function Header() {
                         />
                         <Typography
                             variant="h6"
-                            noWrap
+                            // noWrap
                             component="div"
                             style={{ color: "#5f6368", marginRight: "30px" }}
                         >
@@ -201,10 +203,11 @@ export function Header() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             color="inherit"
+                            style={{ marginLeft: "48vw" }}
                         >
                             <AppsRoundedIcon style={{ color: "#5f6368" }} />
                         </IconButton>
-                        <Avatar sx={{ bgcolor: deepPurple[500] }}>{localStorage.getItem("firstName").charAt(0)}</Avatar>
+                        <Logout />
                     </Toolbar>
                 </AppBar>
                 <Drawer variant="permanent" open={open}>
@@ -216,15 +219,15 @@ export function Header() {
                                 <ListItem button key={text}>
                                     <ListItemIcon >
                                         {index === 0 ? (
-                                            <LightbulbOutlinedIcon onClick={() => routeToPages(index)}/>
+                                            <LightbulbOutlinedIcon onClick={() => routeToPages(index)} />
                                         ) : index === 1 ? (
                                             <NotificationsNoneOutlinedIcon />
                                         ) : index === 2 ? (
                                             <EditOutlinedIcon />
                                         ) : index === 3 ? (
-                                            <ArchiveOutlinedIcon onClick={() => routeToPages(index)}/>
+                                            <ArchiveOutlinedIcon onClick={() => routeToPages(index)} />
                                         ) : (
-                                            <DeleteOutlineOutlinedIcon onClick={() => routeToPages(index)}/>
+                                            <DeleteOutlineOutlinedIcon onClick={() => routeToPages(index)} />
                                         )}
                                     </ListItemIcon>
                                     <ListItemText primary={text} />
