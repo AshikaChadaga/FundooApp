@@ -8,6 +8,8 @@ import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import UserService from '../../service/UserService';
 import { Button } from '@mui/material';
 import NotesIcon from '../notesicons/NotesIcon';
+import { deepPurple, blueGrey } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 
 const userService = new UserService();
 
@@ -16,8 +18,8 @@ function MainNotesIcons(props) {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [color, setColor] = useState("#fff");
-    const [isArchived, setIsArchived] = useState("false");
-    const [useEffectCall, setUseEffectCall] = useState(false);
+    const [isArchived, setIsArchived] = useState(false);
+    const [collaborators, setCollaborators] = React.useState([]);
     const open = () => {
         setChecked(true);
     }
@@ -25,14 +27,24 @@ function MainNotesIcons(props) {
         setChecked(false);
     }
 
+    const handleArchiveState = () => {
+        setIsArchived(true);
+    }
+
+    const handleAddCollaborators = (data) => {
+        setCollaborators([...collaborators, data]);
+        console.log("collab", collaborators);
+        console.log("Called handle add collab");
+    }
+
     const saveNote = () => {
-        close();
-        let data = {
-            title: title,
-            description: content,
-            color: color,
-            isArchived: isArchived
-        };
+        let data = new FormData();
+        data.append('title', title);
+        data.append('description', content);
+        data.append('color', color);
+        data.append('isArchived', isArchived);
+        data.append('collaberators', JSON.stringify(collaborators));
+
         let config = {
             headers: {
                 'Authorization': localStorage.getItem("id"),
@@ -43,14 +55,17 @@ function MainNotesIcons(props) {
                 console.log("Notes Added!");
                 props.displayNote();
                 console.log("Display notes called");
+                setTitle("");
+                setContent("");
+                setColor("#fff");
+                setIsArchived(false);
+                setCollaborators([]);
+                close();
             })
             .catch(error => {
                 console.error('Error encountered While Adding Notes!', error);
             });
-        setTitle("");
-        setContent("");
-        setColor("#fff");
-        setIsArchived(false);
+
     }
 
     const notestitle = (
@@ -66,9 +81,11 @@ function MainNotesIcons(props) {
         </Box>
     );
 
-    useEffect(()=> {
-        saveNote();
-    }, [useEffectCall])
+    useEffect(() => {
+        if (isArchived) {
+            saveNote();
+        }
+    }, [isArchived]);
 
     return (
         <div>
@@ -89,8 +106,17 @@ function MainNotesIcons(props) {
                         />
                     </Box>
                     <Collapse in={checked}>
-                        <Box sx={{ display: 'flex', justifyContent:"space-between"}}>
-                            <NotesIcon useEffectCall={useEffectCall} setUseEffectCall={setUseEffectCall} setIsArchived={setIsArchived} setColor={setColor} mode="create"/>
+                        <Box display='flex' marginBottom={'10px'}>
+                            {collaborators ?
+                                collaborators.map((eachCollab) => (
+                                    <Box display={'flex'}>
+                                        <span key={eachCollab.userId}><Avatar size="small" sx={{ width: 40, height: 40, bgcolor: blueGrey[400], marginRight: "3px" }}>{eachCollab.firstName.charAt(0)}</Avatar></span>                                    </Box>
+                                ))
+                                : ''
+                            }
+                        </Box>
+                        <Box sx={{ display: 'flex', justifyContent: "space-between" }}>
+                            <NotesIcon handleAddCollaborators={handleAddCollaborators} handleArchiveState={handleArchiveState} setColor={setColor} mode="create" />
                             <Button onClick={saveNote} size="small" sx={{ color: '#5f6368', textTransform: 'none', fontWeight: 'bolder', fontSize: '0.875rem' }}>Close</Button>
                         </Box>
 
