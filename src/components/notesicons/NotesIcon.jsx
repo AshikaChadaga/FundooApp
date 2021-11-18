@@ -14,13 +14,12 @@ export default function NotesIcon(props) {
 
     const updateArchive = () => {
         if(props.mode == "create"){
-            props.setIsArchived(true);
-            console.log("Created Archived Notes");
-            props.setUseEffectCall(!props.useEffectcall);            
+            props.handleArchiveState();
+            console.log("Created Archived Notes");           
         }
         else{
             let data={
-                noteIdList: [props.noteId],
+                noteIdList: [props.note.id],
                 isArchived: true
             };
             let config = {
@@ -39,16 +38,16 @@ export default function NotesIcon(props) {
                 });           
         }
     }
-
+    
     return (
         <div>
             <div className="icons">
                 <IconButton size="small" >
                     <AddAlertOutlinedIcon style={{ color: "#5f6368" }} />
                 </IconButton>
-                <Collaborators/>
+                <Collaborators handleAddCollaborators={props.handleAddCollaborators} displayNote={props.displayNote} setCollaborators={props.setCollaborators} mode={props.mode} collaborators = {props.collaborators} note={props.note}/>
                 <IconButton size="small">
-                    {props.mode == "update" ? <PalleteIcon displayNote={props.displayNote} noteId={props.noteId} setColor={props.setColor} mode="update" /> : <PalleteIcon displayNote={props.displayNote} setColor={props.setColor} mode="create" />}
+                    {props.mode == "update" ? <PalleteIcon displayNote={props.displayNote} note={props.note} setColor={props.setColor} mode="update" /> : <PalleteIcon displayNote={props.displayNote} setColor={props.setColor} mode="create" />}
                 </IconButton>
                 <IconButton size="small">
                     <ImageOutlinedIcon style={{ color: "#5f6368" }} />
@@ -57,7 +56,7 @@ export default function NotesIcon(props) {
                     <ArchiveOutlinedIcon style={{ color: "#5f6368" }}/>
                 </IconButton>
                 <IconButton size="small">
-                    <MenuDropdown handleClose={props.handleClose} mode="update" setIsDeleted={props.setIsDeleted} displayNote={props.displayNote} noteId={props.noteId} style={{ color: "#5f6368" }} />
+                    <MenuDropdown handleClose={props.handleClose} mode="update" setIsDeleted={props.setIsDeleted} displayNote={props.displayNote} note={props.note} style={{ color: "#5f6368" }} />
                 </IconButton>
             </div>
         </div>
