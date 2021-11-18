@@ -24,7 +24,7 @@ export default function PalleteIcon(props) {
         props.setColor(color);
         if (props.mode == 'update') {
             let data = {
-                noteIdList: [props.noteId],
+                noteIdList: [props.note.id],
                 color: color
             };
 
