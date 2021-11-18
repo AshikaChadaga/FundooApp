@@ -14,7 +14,7 @@ export default function EmailGenerator(props) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [open, setOpen] = React.useState(false);
     const [resList, setResList] = React.useState([]);
-
+    
     const handleClick = () => (event) => {
         setOpen(true);
         setAnchorEl(event.currentTarget);
@@ -22,12 +22,12 @@ export default function EmailGenerator(props) {
 
     const handleClose = (event) => {
         setOpen(false);
+        setResList([]);
     };
 
     const handleMenuItemClick = (event, index) => {
-        console.log("collab List Before : " + props.collabList);
-        props.setCollabList([...props.collabList, resList[index]]);
-        console.log("collab List After: " + props.collabList);
+        props.setCollaboratorList([...props.collaboratorList, resList[index]])
+        props.handleSave(resList[index]);
     };
 
     const search = (event) => {
@@ -45,6 +45,7 @@ export default function EmailGenerator(props) {
                 .then((res) => {
                     setResList(res.data.data.details);
                     console.log(res.data.data.details);
+                    console.log("Retrieved Search List")
                 })
                 .catch(error => {
                     console.error('Error encountered While Retrieving Search list!', error);
@@ -70,7 +71,8 @@ export default function EmailGenerator(props) {
                                     {resList.map((option, index) => (
                                         <MenuItem
                                             onClick={(event) => handleMenuItemClick(event, index)}
-                                            key={option}>{option.firstName} {option.lastName} &lt;{option.email}&gt;
+                                            key={option.userId}
+                                            >{option.firstName} {option.lastName} &lt;{option.email}&gt;
                                         </MenuItem>
                                     ))}
                                 </MenuList>

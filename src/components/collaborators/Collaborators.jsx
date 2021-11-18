@@ -1,13 +1,5 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Popper from "@mui/material/Popper";
-import Fade from "@mui/material/Fade";
-import Paper from "@mui/material/Paper";
-import TextField from "@mui/material/TextField";
 import UserService from "../../service/UserService";
-import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
@@ -24,65 +16,47 @@ import EmailGenerator from "../emailgenerator/EmailGenerator";
 const userService = new UserService();
 
 
-export default function Collaborators() {
+export default function Collaborators(props) {
     const [open, setOpen] = React.useState(false);
-    const [collaborators, setCollaborators] = React.useState([]);
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [openPopper, setOpenPopper] = React.useState(false);
-    const [responseList, setResponseList] = React.useState([]);
+    const [collaboratorList, setCollaboratorList] = React.useState([]);
 
     const handleClickOpen = () => {
         setOpen(true);
     };
     const handleClose = () => {
-        // setCollabList([]);
         setOpen(false);
-        setCollaborators([]);
-    };
-    const handleClick = () => (event) => {
-        setAnchorEl(event.currentTarget);
-        setOpenPopper(true);
-
+        setCollaboratorList([]);
     };
 
-    const handlePopperClose = (event) => {
-        setOpenPopper(false);
-        setResponseList([]);
-    };
+    const handleSave = (data) => {
+        if (props.mode == 'update') {
 
-    const handleMenuItemClick = (event, index) => {
-        setCollaborators([...collaborators, responseList[index]]);
-        console.log("Option: ", responseList[index]);
-        console.log("collab List After: ", collaborators);
-    };
-
-    const search = (event) => {
-        // let searchKey = event.target.value;
-        if (event.target.value !== "") {
-            let data = {
-                "searchWord": event.target.value
-            };
             let config = {
                 headers: {
                     'Authorization': localStorage.getItem("id"),
                 }
-            };
-            userService.getResult("user/searchUserList", data, config)
+            }
+            userService.addCollaborator(`/notes/${props.note.id}/AddCollaboratorsNotes`, data, config)
                 .then((res) => {
-                    setResponseList(res.data.data.details);
-                    console.log("Response List", responseList);
+                    console.log("Registered User Successfully");
+                    props.displayNote();
                 })
                 .catch(error => {
-                    console.error('Error encountered While Retrieving Search list!', error);
+                    console.error('Error encountered While Adding Collaborator !', error);
                 });
         }
 
+        
+        else{
+            props.handleAddCollaborators(data);
+            console.log("Called handle add collab");
+        }
     }
     return (
         <span>
-            <IconButton size="medium">
+            <IconButton size="medium" onClick={handleClickOpen}>
                 <PersonAddAltOutlinedIcon
-                    onClick={handleClickOpen}
+
                     style={{ color: "#5f6368" }}
                 />
             </IconButton>
@@ -93,32 +67,44 @@ export default function Collaborators() {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <div class="login-email" >
+                        <div className="login-email" >
                             <Avatar sx={{ bgcolor: deepPurple[500] }}>{localStorage.getItem("firstName").charAt(0)}</Avatar>
                             <div >
-                                <p class="name">{localStorage.getItem("firstName")} {localStorage.getItem("lastName")} (Owner)</p>
-                                <p class="email">{localStorage.getItem("email")}</p>
+                                <h4 className="name">{localStorage.getItem("firstName")} {localStorage.getItem("lastName")} (Owner)</h4>
+                                <h4 className="email">{localStorage.getItem("email")}</h4>
                             </div>
                         </div>
 
-                        <div class="collab" >
-                            {collaborators.map((collab) => (
-                                <div class="login-email">
-                                    <Avatar sx={{ bgcolor: deepPurple[500] }}>{collab.firstName.charAt(0)}</Avatar>
-                                    <div>
-                                        <p class="name">{collab.firstName} {collab.lastName}</p>
-                                        <p class="email">{collab.email}</p>
-                                    </div>
-                                </div>
-                            ))}
+                        <div className="collab" >
+                            {
+                                props.note ?
+                                    props.note.collaborators.map((collab) => (
+                                        <div key={collab.email} className="login-email">
+                                            <Avatar sx={{ bgcolor: deepPurple[500] }}>{collab.firstName.charAt(0)}</Avatar>
+                                            <div>
+                                                <h4 className="name">{collab.firstName} {collab.lastName}</h4>
+                                                <h4 className="email">{collab.email}</h4>
+                                            </div>
+                                        </div>
+                                    ))
+                                    : collaboratorList.map((collab) => (
+                                        <div key={collab.email} className="login-email">
+                                            <Avatar sx={{ bgcolor: deepPurple[500] }}>{collab.firstName.charAt(0)}</Avatar>
+                                            <div>
+                                                <h4 className="name">{collab.firstName} {collab.lastName}</h4>
+                                                <h4 className="email">{collab.email}</h4>
+                                            </div>
+                                        </div>
+                                    ))
+                            }
                         </div>
 
                     </DialogContentText>
                     <div
-                        class="collab-email"
+                        className="collab-email"
                         style={{ display: "grid", gridTemplateColumns: "1fr 9fr" }}
                     >
-                        <div class="account-cirlce">
+                        <div className="account-cirlce">
                             <h5>
                                 <IconButton size="medium">
                                     <PersonAddAltOutlinedIcon
@@ -128,8 +114,8 @@ export default function Collaborators() {
                             </h5>
                         </div>
 
-                        <div class="email">
-                            <EmailGenerator setCollabList={setCollaborators} collabList={collaborators} />
+                        <div className="email">
+                            <EmailGenerator collaboratorList={collaboratorList} setCollaboratorList={setCollaboratorList} handleSave={handleSave} />
                         </div>
                     </div>
                 </DialogContent>
