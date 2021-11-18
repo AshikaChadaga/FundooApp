@@ -44,7 +44,7 @@ export default function MenuDropdown(props) {
 
   const deleteNote = () => {
     let data = {
-      noteIdList: [props.noteId],
+      noteIdList: [props.note.id],
       isDeleted: true
     }
     let config = {
@@ -82,7 +82,7 @@ export default function MenuDropdown(props) {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="split-button-menu">
                   {options.map((option, index) => (
-                    <MenuItem onClick={(event) => handleMenuItemClick(event, index)} key={option}>{option}</MenuItem>
+                    <MenuItem onClick={(event) => handleMenuItemClick(event, index)} key={index}>{option}</MenuItem>
                   ))}
                 </MenuList>
               </ClickAwayListener>
