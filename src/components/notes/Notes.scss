@@ -13,8 +13,8 @@
     @include grid(6, 1vw);
     text-align: left;
     margin-top: 2%;
-    margin-left: 5vw;
-    margin-right: 2vw;
+    margin-left: 100px;
+    margin-right: 1vw;
 
     .note {
         @include form-border();
@@ -24,31 +24,29 @@
         margin-bottom: 5%;
         &:hover {
             box-shadow: inset 1px 1px 0 rgb(0 0 0 / 10%), inset 0 -1px 0 rgb(0 0 0 / 30%);
-
         }
         .title {
             margin-top: 2%;
-            margin-right: 55%;
-        }           
-    }   
+            margin-right: 45%;
+        }
+    }
 }
 
 .note .icons {
-    visibility:hidden;
+    visibility: hidden;
 }
 
-.note:hover .icons{
-   visibility:visible;
+.note:hover .icons {
+    visibility: visible;
 }
 
 .note .note-content .pin-icons {
-    visibility:hidden;
+    visibility: hidden;
 }
 
-.note:hover .note-content .pin-icons{
-   visibility:visible;
+.note:hover .note-content .pin-icons {
+    visibility: visible;
 }
-
 
 @media only screen and (max-width: 1200px) {
     .notes {
@@ -76,17 +74,23 @@
     .notes {
         @include grid(2, 1vw);
         .note {
-            max-width: 30vw;
+            min-width: 20vw;
         }
     }
 }
-
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
     .notes {
-        @include grid(1, 6vw);
+        margin-left: 70px;
+        @include grid(1, 1vw);
         margin-top: 6%;
         .note {
-            max-width: 30vw;
+            min-width: 85%;
+            .icons {
+                display: flex;
+                justify-content: left;
+                justify-content: center;
+                align-items: center;
+            }
         }
     }
 }
