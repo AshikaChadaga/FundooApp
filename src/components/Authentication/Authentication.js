@@ -2,15 +2,21 @@ import React from 'react'
 
 class Authentication {
     constructor(props) {
-        this.authenticated = false;
+        if (localStorage.getItem("id"))
+            this.authenticated = true;
+        else
+            this.authenticated = false;
+
     }
-    login(cb) {
-        this.authenticated = true;
-        cb();
+    login(callback) {
+        if (localStorage.getItem("id")){
+            this.authenticated = true;
+            callback();
+        }
+
     }
-    logout(cb) {
+    logout() {
         this.authenticated = false;
-        cb();
     }
     isAuthenticated() {
         return this.authenticated;
