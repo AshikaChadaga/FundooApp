@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
 import UserService from '../../service/UserService';
-import ArchivedOrDeletedNotes from '../archivedordeletednotes/ArchivedOrDeletedNotes';
+import Notes from '../../components/notes/Notes';
 const userService = new UserService();
 
 export default function DisplayTrash() {
@@ -32,7 +32,7 @@ export default function DisplayTrash() {
 
     return (
         <div>
-            <ArchivedOrDeletedNotes archive={archive} displayNote={displayNote} />
+            <Notes notes={archive} displayNote = {displayNote}/>
         </div>
     )
 }
