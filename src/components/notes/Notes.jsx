@@ -78,10 +78,13 @@ export default function Notes(props) {
     const displayCollaborators = (note) => {
         if (note) {
             if (note.collaborators.length === 0) return null;
+            else if(note.collaborators.length > 6) return null;
             else {
                 return (
                     note.collaborators.map((eachCollab) => (
-                        <span key={eachCollab.userId}><Avatar size="small" sx={{ width: 40, height: 40, bgcolor: blueGrey[400], marginRight: "3px" }}>{eachCollab.firstName.charAt(0)}</Avatar></span>
+                        <div className="collab">
+                            <span key={eachCollab.userId}><Avatar size="small" sx={{ width: 40, height: 40, bgcolor: blueGrey[400], marginRight: "3px" }}>{eachCollab.firstName.charAt(0)}</Avatar></span>
+                        </div>
                     ))
                 );
             }
@@ -121,9 +124,12 @@ export default function Notes(props) {
                                 </div>
                             </Paper>
                         </Box>
-                    )) : <div className="not-found">
+                    )) : 
+                    props.mode == "search" ?
+                    <div className="not-found">
                         <p>NO NOTES FOUND!</p>
                     </div>
+                    :""
                 }
             </div>
         );
