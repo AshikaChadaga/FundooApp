@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import NotesIcon from '../notesicons/NotesIcon';
-import MainNotesIcons from '../mainnotesicons/MainNotesIcons';
 import './Notes.scss'
 import Box from '@mui/material/Box';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
@@ -11,7 +10,7 @@ import InputBase from '@mui/material/InputBase';
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import UserService from '../../service/UserService';
-import { deepPurple, blueGrey } from '@mui/material/colors';
+import { blueGrey } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 
 const userService = new UserService();
@@ -95,41 +94,43 @@ export default function Notes(props) {
     const noteDiv = () => {
         return (
             <div className="notes">
-                {props.notes.filter(each => each.isArchived == false && each.isDeleted == false).map((note) => (
-                    <Box key={note.id}>
-                        <Paper className="note" sx={{
-                            border: "1px solid lightgray",
-                            borderRadius: "10px",
-                            backgroundColor: note.color,
-                            padding: "5%"
-                        }}>
-                            <div className="note-content" onClick={() => handleClickOpen(note)}>
-                                <span className="title">{note.title}</span>
-                                <span className="pin-icons">
-                                    <IconButton size="small" >
-                                        <PushPinOutlinedIcon style={{ color: "#5f6368" }} />
-                                    </IconButton>
-                                </span>
-                                <p className="content">{note.description}</p>
+                {props.notes.length != 0 ?
+                    props.notes.map((note) => (
+                        <Box key={note.id}>
+                            <Paper className="note" sx={{
+                                border: "1px solid lightgray",
+                                borderRadius: "10px",
+                                backgroundColor: note.color,
+                                padding: "5%"
+                            }}>
+                                <div className="note-content" onClick={() => handleClickOpen(note)}>
+                                    <span className="title">{note.title}</span>
+                                    <span className="pin-icons">
+                                        <IconButton size="small" >
+                                            <PushPinOutlinedIcon style={{ color: "#5f6368" }} />
+                                        </IconButton>
+                                    </span>
+                                    <p className="content">{note.description}</p>
 
-                                <Box sx={{ display: 'flex' }}>
-                                    {displayCollaborators(note)}
-                                </Box>
-                            </div>
-                            <div className="icons">
-                                <NotesIcon note={note} handleClose={handleClose} setIsDeleted={setIsDeleted} setIsArchived={setIsArchived} displayNote={props.displayNote} setColor={setColor} mode="update" />
-                            </div>
-                        </Paper>
-                    </Box>
-                ))}
+                                    <Box sx={{ display: 'flex' }}>
+                                        {displayCollaborators(note)}
+                                    </Box>
+                                </div>
+                                <div className="icons">
+                                    <NotesIcon note={note} handleClose={handleClose} setIsDeleted={setIsDeleted} setIsArchived={setIsArchived} displayNote={props.displayNote} setColor={setColor} mode="update" />
+                                </div>
+                            </Paper>
+                        </Box>
+                    )) : <div className="not-found">
+                        <p>NO NOTES FOUND!</p>
+                    </div>
+                }
             </div>
         );
     }
     return (
         <div>
-            <div className="main-note">
-                <MainNotesIcons displayNote={props.displayNote} />
-            </div>
+
             <div className="notesdiv">
                 {noteDiv()}
             </div>
