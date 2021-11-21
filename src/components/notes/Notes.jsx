@@ -78,7 +78,7 @@ export default function Notes(props) {
     const displayCollaborators = (note) => {
         if (note) {
             if (note.collaborators.length === 0) return null;
-            else if(note.collaborators.length > 6) return null;
+            // else if(note.collaborators.length > 6) return null;
             else {
                 return (
                     note.collaborators.map((eachCollab) => (
