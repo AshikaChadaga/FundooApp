@@ -38,7 +38,7 @@ export default function DisplayNotes(props) {
                 
                     (props.searchWord.length !== 0 ?
                     <div>
-                        <Notes notes={notes.filter(each => (each.title.includes(props.searchWord) || each.description.includes(props.searchWord)) && (each.isDeleted == false))} displayNote={displayNote} />
+                        <Notes mode="search" notes={notes.filter(each => (each.title.includes(props.searchWord) || each.description.includes(props.searchWord)) && (each.isDeleted == false))} displayNote={displayNote} />
                     </div>
                     : 
                     "Type To Search")
