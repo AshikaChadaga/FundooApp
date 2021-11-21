@@ -29,7 +29,16 @@
             margin-top: 2%;
             margin-right: 45%;
         }
+
+        .note-content{
+            .collab{
+                display: grid;
+                grid-template-columns: repeat(6, 7px);
+            }
+        }
+        
     }
+    
 }
 
 .note .icons {
@@ -50,7 +59,7 @@
 
 @media only screen and (max-width: 1200px) {
     .notes {
-        max-width: 300px;
+        // max-width: 300px;
         @include grid(4, 1vw);
     }
 }
