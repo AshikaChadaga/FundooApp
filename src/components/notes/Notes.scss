@@ -48,16 +48,9 @@
     visibility: visible;
 }
 
-.not-found{
-    min-width: 100%;
-    min-height: 100%;
-    text-align: center;
-    justify-content: center;
-    color: black;
-}
-
 @media only screen and (max-width: 1200px) {
     .notes {
+        max-width: 300px;
         @include grid(4, 1vw);
     }
 }
