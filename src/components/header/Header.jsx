@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useContext, useState } from 'react'
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -24,6 +24,7 @@ import InputBase from "@mui/material/InputBase";
 import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import { useHistory } from "react-router";
 import Logout from '../logout/Logout';
+import { searchContext } from '../../context/searchContext';
 
 const drawerWidth = 240;
 const state = false;
@@ -158,6 +159,7 @@ export function Header() {
         setOpen(!open);
     };
 
+    const [searchword, setSearchWord] = useContext(searchContext);
     return (
         <div>
             <Box sx={{ display: "flex" }}>
@@ -182,18 +184,18 @@ export function Header() {
                         />
                         <Typography
                             variant="h6"
-                            // noWrap
                             component="div"
                             style={{ color: "#5f6368", marginRight: "30px" }}
                         >
                             Keep
                         </Typography>
-                        <Search style={{ marginLeft: "0px" }}>
+                        <Search style={{ marginLeft: "0px" }} onClick={() => history.push("/dashboard/search")}>
                             <SearchIconWrapper>
                                 <SearchIcon />
                             </SearchIconWrapper>
                             <StyledInputBase
                                 placeholder="Search…"
+                                onChange={(e) => setSearchWord(e.target.value)}
                                 inputProps={{ "aria-label": "search" }}
                             />
                         </Search>
