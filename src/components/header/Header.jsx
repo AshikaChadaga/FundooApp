@@ -177,14 +177,15 @@ export function Header() {
                                 marginLeft: "5px",
                                 marginRight: "5px",
                                 padding: "5px",
-                                backgroundColor: "#F4B400"
+                                backgroundColor: "#F4B400",
+                                cursor:"pointer"
                             }}
                         />
                         <Typography
                             onClick={() => history.push("/dashboard")}
                             variant="h6"
                             component="div"
-                            style={{ color: "#5f6368", marginRight: "30px" }}
+                            style={{ color: "#5f6368", marginRight: "30px", cursor:"pointer" }}
                         >
                             Keep
                         </Typography>
