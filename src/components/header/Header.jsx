@@ -31,12 +31,10 @@ const state = false;
 
 
 const Search = styled("div")(({ theme }) => ({
-    overflowX: "hidden",
     color: "#5f6368",
     position: "relative",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: "#f1f3f4",
-    // marginRight: theme.spacing(110),
     marginLeft: 20,
     minWidth: "35%",
     [theme.breakpoints.down("sm")]: {
@@ -62,13 +60,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: "#5f6368",
     "& .MuiInputBase-input": {
         padding: theme.spacing(1, 65, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create("width"),
         width: "100%",
-        [theme.breakpoints.up("md")]: {
-            width: "20ch"
-        }
+        // [theme.breakpoints.up("md")]: {
+        //     width: "20ch"
+        // }
     }
 }));
 
@@ -175,6 +172,7 @@ export function Header() {
                             <MenuIcon style={{ color: "#5f6368" }} />
                         </IconButton>
                         <LightbulbIcon
+                            onClick={() => history.push("/dashboard")}
                             style={{
                                 marginLeft: "5px",
                                 marginRight: "5px",
@@ -183,6 +181,7 @@ export function Header() {
                             }}
                         />
                         <Typography
+                            onClick={() => history.push("/dashboard")}
                             variant="h6"
                             component="div"
                             style={{ color: "#5f6368", marginRight: "30px" }}
@@ -205,7 +204,7 @@ export function Header() {
                             aria-controls="menu-appbar"
                             aria-haspopup="true"
                             color="inherit"
-                            style={{ marginLeft: "48vw" }}
+                            style={{ marginLeft: "48%" }}
                         >
                             <AppsRoundedIcon style={{ color: "#5f6368" }} />
                         </IconButton>
