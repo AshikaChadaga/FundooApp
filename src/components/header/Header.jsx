@@ -25,6 +25,7 @@ import AppsRoundedIcon from "@mui/icons-material/AppsRounded";
 import { useHistory } from "react-router";
 import Logout from '../logout/Logout';
 import { searchContext } from '../../context/searchContext';
+import css from "./Header.scss";
 
 const drawerWidth = 240;
 const state = false;
@@ -200,6 +201,7 @@ export function Header() {
                             />
                         </Search>
                         <IconButton
+                            className={css.appsIcon}
                             size="large"
                             aria-label="account of current user"
                             aria-controls="menu-appbar"
